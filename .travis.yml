@@ -17,6 +17,6 @@ after_success:
 notifications:
   email: noslav7@gmail.com
     recipients:
-      - rail.shamsemukhametov@mail.ru
+      - noslav7@gmail.com
     on_success: never # default: change
     on_failure: always # default: always
