@@ -14,8 +14,8 @@ env:
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 
-notifications: noslav7@gmail.com
-  email: noslav7@gmail.com
+notifications:
+  email:
     recipients:
       - noslav7@gmail.com
     on_success: never # default: change
