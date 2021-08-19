@@ -15,9 +15,9 @@ public MatrixIt(int[][] data) {
 @Override
 public boolean hasNext() {
         boolean hasN = false;
-        for (int[] datum : data) {
-                for (int i : datum) {
-                        if (datum == null || data == null) {
+        for (int i = 0; i < row; i++) {
+                for (int j = 0; j < column; j++) {
+                       if (data[row][column] == null) {
                                 hasN = true;
                         }
                 }
@@ -30,6 +30,6 @@ public Integer next() {
         if (!hasNext()) {
         throw new NoSuchElementException();
         }
-        return null;
+        return data[row][column];
         }
 }
