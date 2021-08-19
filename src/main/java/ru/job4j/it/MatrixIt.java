@@ -30,6 +30,6 @@ public Integer next() {
         if (!hasNext()) {
         throw new NoSuchElementException();
         }
-        return data[row][column];
+        return data.next();
         }
 }
