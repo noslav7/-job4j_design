@@ -14,15 +14,12 @@ public MatrixIt(int[][] data) {
 
 @Override
 public boolean hasNext() {
-        boolean hasN = false;
-        for (int i = 0; i < row; i++) {
-                for (int j = 0; j < column; j++) {
-                       if (data[row][column] == null) {
-                                hasN = true;
-                        }
-                }
+        int col = column;
+        while (col < data[row].length) {
+                row++;
+                col = 0;
         }
-        return hasN;
+        return row < data.length;
 }
 
 @Override
@@ -30,6 +27,6 @@ public Integer next() {
         if (!hasNext()) {
         throw new NoSuchElementException();
         }
-        return data.next();
+        return column++;
         }
 }
