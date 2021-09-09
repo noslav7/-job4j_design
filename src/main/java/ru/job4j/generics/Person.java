@@ -25,7 +25,8 @@ public class Person {
             return false;
         }
         Person person = (Person) o;
-        return age == person.age && Objects.equals(name, person.name) && Objects.equals(birthday, person.birthday);
+        return age == person.age && Objects.equals(name, person.name)
+                && Objects.equals(birthday, person.birthday);
     }
 
     @Override

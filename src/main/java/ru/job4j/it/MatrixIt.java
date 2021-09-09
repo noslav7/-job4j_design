@@ -14,10 +14,9 @@ public MatrixIt(int[][] data) {
 
 @Override
 public boolean hasNext() {
-        int col = column;
-        while (col < data[row].length) {
+        while (row < data.length && data[row].length == column) {
                 row++;
-                col = 0;
+                column = 0;
         }
         return row < data.length;
 }
