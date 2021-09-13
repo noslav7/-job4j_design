@@ -1,7 +1,6 @@
 package ru.job4j.generics;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,23 +14,23 @@ public class Generics {
         second.add(new Predator());
         third.add(new Tiger());
 
-        gen.printObject(Collections.singletonList(first));
-        gen.printObject(Collections.singletonList(second));
-        gen.printObject(Collections.singletonList(third));
+        gen.printObject(first);
+        gen.printObject(second);
+        gen.printObject(third);
         System.out.println();
 
-     // gen.printBoundedWildCard(first);
+   //   gen.printBoundedWildCard(first);
         gen.printBoundedWildCard(second);
         gen.printBoundedWildCard(third);
         System.out.println();
 
-        gen.printLowerBoundedWildCard(Collections.singletonList(first));
+        gen.printLowerBoundedWildCard(first);
         gen.printLowerBoundedWildCard(second);
-        gen.printLowerBoundedWildCard(Collections.singletonList(third));
+    //  gen.printLowerBoundedWildCard(third);
     }
 
-    public void printObject(List<Object> list) {
-        for (Iterator<Object> it = list.iterator(); it.hasNext(); ) {
+    public void printObject(List<? extends Object> list) {
+        for (Iterator<? extends Object> it = list.iterator(); it.hasNext();) {
             Object next = it.next();
             System.out.println("Текущий элемент: " + next);
         }
