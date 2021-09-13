@@ -20,7 +20,7 @@ public class Generics {
         gen.printObject(Collections.singletonList(third));
         System.out.println();
 
-        gen.printBoundedWildCard(first);
+     // gen.printBoundedWildCard(first);
         gen.printBoundedWildCard(second);
         gen.printBoundedWildCard(third);
         System.out.println();
@@ -39,7 +39,7 @@ public class Generics {
 
     public void printBoundedWildCard(List<? extends Predator> list) {
         for (Iterator<? extends Predator> it = list.iterator(); it.hasNext();) {
-            Predator next = it.next();
+            Object next = it.next();
             System.out.println("Текущий элемент: " + next);
         }
     }
