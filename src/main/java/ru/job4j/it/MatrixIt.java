@@ -15,6 +15,7 @@ public MatrixIt(int[][] data) {
 public boolean hasNext() {
         while (row < data.length && data[row].length == column) {
                 row++;
+                column = 0;
         }
         return row < data.length;
 }
@@ -24,6 +25,6 @@ public Integer next() {
         if (!hasNext()) {
         throw new NoSuchElementException();
         }
-        return data[row][column];
+        return data[row][column++];
         }
 }
