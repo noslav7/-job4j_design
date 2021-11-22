@@ -5,24 +5,32 @@ import java.util.NoSuchElementException;
 
 public class EvenNumbersIterator  implements Iterator<Integer> {
 
-    private int[] data;
-    private int index;
+    private static int[] data;
+    private static int index;
 
     public EvenNumbersIterator(int[] data) {
-        this.data = data;
+        EvenNumbersIterator.data = data;
     }
 
     @Override
     public boolean hasNext() {
-        return data[index] % 2 == 0;
+        while (index > -1 && index < data.length && data[index] % 2 == 1) {
+            index++;
+        }
+        return checkIfEven();
     }
 
     @Override
     public Integer next() {
-        if (hasNext()) {
-            return data[index];
+        if (checkIfEven()) {
+            return data[index++];
         } else {
-            throw new NoSuchElementException();
+            index++;
         }
+        return next();
+    }
+
+    public static boolean checkIfEven() {
+        return index > -1 && index < data.length && data[index] % 2 == 0;
     }
 }
