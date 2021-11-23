@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class FlatMap<T> implements Iterator<T> {
     private final Iterator<Iterator<T>> data;
@@ -15,8 +16,9 @@ public class FlatMap<T> implements Iterator<T> {
 
     @Override
     public boolean hasNext() {
-
-        return false;
+        AtomicBoolean hNext = new AtomicBoolean(false);
+        cursor.forEachRemaining(i -> hNext.set(true));
+        return hNext.get();
     }
 
     @Override
@@ -24,7 +26,7 @@ public class FlatMap<T> implements Iterator<T> {
         if (!hasNext()) {
             throw new NoSuchElementException();
         }
-        return cursor.next();
+        return this.next();
     }
 
     public static void main(String[] args) {
