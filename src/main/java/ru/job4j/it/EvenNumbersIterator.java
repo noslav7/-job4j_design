@@ -17,20 +17,14 @@ public class EvenNumbersIterator  implements Iterator<Integer> {
         while (index > -1 && index < data.length && data[index] % 2 == 1) {
             index++;
         }
-        return checkIfEven();
+        return index > -1 && index < data.length && data[index] % 2 == 0;
     }
 
     @Override
     public Integer next() {
-        if (checkIfEven()) {
-            return data[index++];
-        } else {
-            index++;
+        if (index < 0 || index >= data.length) {
+            throw new NoSuchElementException();
         }
-        return next();
-    }
-
-    public static boolean checkIfEven() {
-        return index > -1 && index < data.length && data[index] % 2 == 0;
+        return data[index++];
     }
 }
