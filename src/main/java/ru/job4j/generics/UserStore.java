@@ -5,13 +5,12 @@ public class UserStore<T extends Base> implements Store<T> {
 
     @Override
     public void add(T model) {
-        mem.put(model.toString(), model);
+        store.add((User) model);
     }
 
     @Override
     public boolean replace(String id, T model) {
-        if (mem.containsKey(id)) {
-            mem.replace(id, model);
+        if (store.replace(id, (User) model)) {
             return true;
         }
         return false;
@@ -19,8 +18,7 @@ public class UserStore<T extends Base> implements Store<T> {
 
     @Override
     public boolean delete(String id) {
-        if (mem.containsKey(id)) {
-            mem.remove(id);
+        if (store.delete(id)) {
             return true;
         }
         return false;
@@ -28,9 +26,6 @@ public class UserStore<T extends Base> implements Store<T> {
 
     @Override
     public T findById(String id) {
-        if (mem.containsKey(id)) {
-            return mem.get(id);
-        }
-        return null;
+        return (T) store.findById(id);
     }
 }
