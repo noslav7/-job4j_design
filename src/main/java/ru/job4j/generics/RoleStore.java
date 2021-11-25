@@ -5,12 +5,13 @@ public class RoleStore<T extends Base> implements Store<T> {
 
     @Override
     public void add(T model) {
-        store.add(model);
+        mem.put(model.toString(), model);
     }
 
     @Override
     public boolean replace(String id, T model) {
         if (mem.containsKey(id)) {
+            mem.replace(id, model);
             return true;
         }
         return false;
@@ -19,6 +20,7 @@ public class RoleStore<T extends Base> implements Store<T> {
     @Override
     public boolean delete(String id) {
         if (mem.containsKey(id)) {
+            mem.remove(id);
             return true;
         }
         return false;

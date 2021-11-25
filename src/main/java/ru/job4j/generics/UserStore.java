@@ -11,6 +11,7 @@ public class UserStore<T extends Base> implements Store<T> {
     @Override
     public boolean replace(String id, T model) {
         if (mem.containsKey(id)) {
+            mem.replace(id, model);
             return true;
         }
         return false;
@@ -19,6 +20,7 @@ public class UserStore<T extends Base> implements Store<T> {
     @Override
     public boolean delete(String id) {
         if (mem.containsKey(id)) {
+            mem.remove(id);
             return true;
         }
         return false;
