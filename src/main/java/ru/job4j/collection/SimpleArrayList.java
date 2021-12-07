@@ -1,9 +1,10 @@
 package ru.job4j.collection;
 
+import ru.job4j.list.List;
+
 import java.util.*;
 
 public class SimpleArrayList<T> implements List<T> {
-
     private T[] container;
 
     private int size;
@@ -16,41 +17,76 @@ public class SimpleArrayList<T> implements List<T> {
 
     @Override
     public void add(T value) {
-
+        for (T cell : container) {
+            if (cell == null) {
+                cell = value;
+                break;
+            }
+        }
+        size++;
+        modCount++;
+        if (size == container.length) {
+            container = Arrays.copyOf(container, container.length * 2);
+        }
     }
 
     @Override
     public T set(int index, T newValue) {
-
+        Objects.checkIndex(0, container.length);
+        T element = container[index];
+        container[index] = newValue;
+        return element;
     }
 
     @Override
     public T remove(int index) {
-
+        Objects.checkIndex(0, container.length);
+        T element = container[index];
+        System.arraycopy(container, index + 1, container, index, container.length - index - 1);
+        container[container.length - 1] = null;
+        size--;
+        modCount++;
+        return element;
     }
 
     @Override
     public T get(int index) {
-
+        Objects.checkIndex(0, container.length);
+        return container[index];
     }
 
     @Override
     public int size() {
-
+        return size;
     }
 
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
+            int elCount = 1;
+
+            int expectedModCount = modCount;
 
             @Override
             public boolean hasNext() {
-
-            }
+                if (expectedModCount != modCount) {
+                    throw new ConcurrentModificationException();
+                }
+                return elCount <= container.length;
+        }
 
             @Override
             public T next() {
-
+                if (expectedModCount != modCount) {
+                    throw new ConcurrentModificationException();
+                }
+                T element = null;
+                if (hasNext()) {
+                    element = container[elCount - 1];
+                } else {
+                    throw new NoSuchElementException();
+                }
+                return element;
             }
         };
     }
