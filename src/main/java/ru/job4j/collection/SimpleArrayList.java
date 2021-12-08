@@ -18,25 +18,23 @@ public class SimpleArrayList<T> implements List<T> {
     @Override
     public void add(T value) {
         checkSize(size);
-        container[size + 1] = value;
+        container[size] = value;
         size++;
         modCount++;
     }
 
     @Override
     public T set(int index, T newValue) {
-        get(index);
-        T element = container[index];
-        container[index] = newValue;
+        T element = get(index);
+        element = newValue;
         return element;
     }
 
     @Override
     public T remove(int index) {
-        get(index);
-        T element = container[index];
+        T element = get(index);
         System.arraycopy(container, index + 1, container, index, container.length - index - 1);
-        container[container.length - index - 1] = null;
+        container[size - 1] = null;
         size--;
         modCount++;
         return element;
