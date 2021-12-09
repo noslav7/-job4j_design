@@ -44,7 +44,7 @@ public class SimpleArrayList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        Objects.checkIndex(0, container.length);
+        Objects.checkIndex(index, size);
         return container[index];
     }
 
