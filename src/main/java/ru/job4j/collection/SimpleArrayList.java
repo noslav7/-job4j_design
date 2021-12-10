@@ -64,13 +64,10 @@ public class SimpleArrayList<T> implements List<T> {
                     throw new ConcurrentModificationException();
                 }
                 return elCount <= size;
-        }
+            }
 
             @Override
             public T next() {
-                if (expectedModCount != modCount) {
-                    throw new ConcurrentModificationException();
-                }
                 T element = null;
                 if (hasNext()) {
                     element = container[elCount - 1];
@@ -82,9 +79,11 @@ public class SimpleArrayList<T> implements List<T> {
         };
     }
 
-    public void checkSize(int size) {
-        if (size + 1 > container.length) {
-            container = Arrays.copyOf(container, container.length * 2);
+        public void checkSize(int size){
+        if (size + 1 > container.length && container.length == 0) {
+            container = Arrays.copyOf(container, 1);
+        } else if (size + 1 > container.length && container.length != 0) {
+                container = Arrays.copyOf(container, container.length * 2);
+            }
         }
     }
-}
