@@ -79,7 +79,7 @@ public class SimpleArrayList<T> implements List<T> {
         };
     }
 
-        public void checkSize(int size){
+        public void checkSize(int size) {
         if (size + 1 > container.length && container.length == 0) {
             container = Arrays.copyOf(container, 1);
         } else if (size + 1 > container.length && container.length != 0) {
