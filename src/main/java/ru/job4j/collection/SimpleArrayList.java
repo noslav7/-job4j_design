@@ -26,7 +26,7 @@ public class SimpleArrayList<T> implements List<T> {
     @Override
     public T set(int index, T newValue) {
         T element = get(index);
-        element = newValue;
+        container[index] = newValue;
         return element;
     }
 
