@@ -6,10 +6,15 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class SimpleLinkedList<E> implements List<E> {
+    private E[] container;
 
     private int modCount;
 
     private int size;
+
+    public SimpleLinkedList(int capacity) {
+        this.container = (E[]) new Object[capacity];
+    }
 
     @Override
     public void add(E value) {
