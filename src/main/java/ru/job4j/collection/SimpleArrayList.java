@@ -4,8 +4,8 @@ import ru.job4j.list.List;
 
 import java.util.*;
 
-public class SimpleArrayList<T> implements List<T> {
-    private T[] container;
+public class SimpleArrayList<T> {
+  /*  private T[] container;
 
     private int size;
 
@@ -82,5 +82,5 @@ public class SimpleArrayList<T> implements List<T> {
         } else if (size + 1 > container.length && container.length != 0) {
                 container = Arrays.copyOf(container, container.length * 2);
             }
-        }
+        }*/
     }

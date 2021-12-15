@@ -16,23 +16,7 @@ public class SimpleLinkedListTest {
     }
 
     @Test
-    public void set() {
-    }
-
-    @Test
-    public void remove() {
-    }
-
-    @Test
     public void get() {
-    }
-
-    @Test
-    public void size() {
-    }
-
-    @Test
-    public void iterator() {
     }
 
     @Test
