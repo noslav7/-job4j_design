@@ -14,6 +14,9 @@ public class SimpleLinkedList<E> implements List<E> {
     private int size;
 
     public SimpleLinkedList() {
+    }
+
+    public SimpleLinkedList(Node<E> node) {
         this.node = (Node<E>) new Object();
     }
 
@@ -30,7 +33,7 @@ public class SimpleLinkedList<E> implements List<E> {
 
     @Override
     public void add(E value) {
-        node.add(indexOf(value));
+        node = new Node<>(value, null);
         size++;
         modCount++;
     }
