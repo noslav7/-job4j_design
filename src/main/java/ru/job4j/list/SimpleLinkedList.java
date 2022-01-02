@@ -13,13 +13,6 @@ public class SimpleLinkedList<E> implements List<E> {
 
     private int size;
 
-    public SimpleLinkedList() {
-    }
-
-    public SimpleLinkedList(Node<E> node) {
-        this.node = (Node<E>) new Object();
-    }
-
     private static class Node<E> {
         private E item;
 
@@ -72,7 +65,7 @@ public class SimpleLinkedList<E> implements List<E> {
                 if (!this.hasNext()) {
                     throw new NoSuchElementException();
                 }
-                Node<E> nextElement = node.next;
+                elCount++;
                 return node.item;
             }
         };
