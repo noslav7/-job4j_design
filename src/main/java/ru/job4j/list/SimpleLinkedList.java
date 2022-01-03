@@ -26,7 +26,7 @@ public class SimpleLinkedList<E> implements List<E> {
 
     @Override
     public void add(E value) {
-        node = new Node<>(node.item, node.next);
+        node.next = new Node<>(node.item, node.next);
         size++;
         modCount++;
     }
