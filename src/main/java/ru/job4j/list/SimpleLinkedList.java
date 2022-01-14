@@ -34,12 +34,13 @@ public class SimpleLinkedList<E> implements List<E> {
     @Override
     public E get(int index) {
         Objects.checkIndex(index, size);
+        E cell = null;
         for (int i = 0; i < size - 1; i++) {
             if (i == index) {
-                return node.item;
+                cell = node.item;
             }
         }
-        return null;
+        return cell;
     }
 
     @Override
@@ -51,13 +52,14 @@ public class SimpleLinkedList<E> implements List<E> {
 
             @Override
             public boolean hasNext() {
+                boolean hasNext = false;
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
                 if (node.next != null) {
-                    return true;
+                    hasNext = true;
                 }
-                return false;
+                return hasNext;
             }
 
             @Override
