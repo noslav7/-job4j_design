@@ -26,14 +26,13 @@ public class SimpleLinkedList<E> implements List<E> {
 
     @Override
     public void add(E value) {
-        node.next = new Node<>(node.item, node.next);
+        Node<E> newNode = new Node<>(value, null);
         size++;
         modCount++;
     }
 
     @Override
     public E get(int index) {
-        Objects.checkIndex(index, size);
         E cell = null;
         for (int i = 0; i < size - 1; i++) {
             if (i == index) {
@@ -48,7 +47,7 @@ public class SimpleLinkedList<E> implements List<E> {
         return new Iterator<E>() {
             int elCount = 0;
 
-            int expectedModCount = modCount;
+            final int expectedModCount = modCount;
 
             @Override
             public boolean hasNext() {
