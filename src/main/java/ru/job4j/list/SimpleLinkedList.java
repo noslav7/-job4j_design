@@ -26,15 +26,16 @@ public class SimpleLinkedList<E> implements List<E> {
 
     @Override
     public void add(E value) {
-        Node<E> newNode = new Node<>(value, null);
+        node.next = (new Node<>(value, null));
         size++;
         modCount++;
     }
 
     @Override
     public E get(int index) {
+        Objects.checkIndex(index, size);
         E cell = null;
-        for (int i = 0; i < size - 1; i++) {
+        for (int i = 0; i < size; i++) {
             if (i == index) {
                 cell = node.item;
             }
