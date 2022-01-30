@@ -7,10 +7,9 @@ import java.util.Objects;
 
 
 public class SimpleLinkedList<E> implements List<E> {
-    private Node<E> node;
-
+    private Node<E> last;
+    private Node<E> first;
     private int modCount;
-
     private int size;
 
     private static class Node<E> {
@@ -26,7 +25,13 @@ public class SimpleLinkedList<E> implements List<E> {
 
     @Override
     public void add(E value) {
-        node.next = new Node<>(node.item, node.next);
+        Node<E> l = last;
+        Node<E> newNode = new Node<>(l, value, null);
+        last = newNode;
+        if (l == null)
+            first = newNode;
+        else
+            l.next = newNode;
         size++;
         modCount++;
     }
@@ -36,7 +41,7 @@ public class SimpleLinkedList<E> implements List<E> {
         Objects.checkIndex(index, size);
         for (int i = 0; i < size - 1; i++) {
             if (i == index) {
-                return node.item;
+                return this.last.item;
             }
         }
         return null;
@@ -54,7 +59,7 @@ public class SimpleLinkedList<E> implements List<E> {
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                if (node.next != null) {
+                if (last.next != null) {
                     return true;
                 }
                 return false;
@@ -66,7 +71,7 @@ public class SimpleLinkedList<E> implements List<E> {
                     throw new NoSuchElementException();
                 }
                 elCount++;
-                return node.item;
+                return this.item;
             }
         };
     }
