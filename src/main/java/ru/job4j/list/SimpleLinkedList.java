@@ -26,7 +26,7 @@ public class SimpleLinkedList<E> implements List<E> {
     @Override
     public void add(E value) {
         Node<E> l = last;
-        Node<E> newNode = new Node<>(l, value, null);
+        Node<E> newNode = new Node<>(value, null);
         last = newNode;
         if (l == null)
             first = newNode;
@@ -71,7 +71,7 @@ public class SimpleLinkedList<E> implements List<E> {
                     throw new NoSuchElementException();
                 }
                 elCount++;
-                return this.item;
+                return first.item;
             }
         };
     }
