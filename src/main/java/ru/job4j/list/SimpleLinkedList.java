@@ -58,20 +58,19 @@ public class SimpleLinkedList<E> implements List<E> {
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                for (int i = 0; i < size; i++) {
-                    if (element[i].next != null) {
+                if (element.next != null) {
                         return true;
                     }
-                }
                 return false;
-            }
+                }
 
             @Override
             public E next() {
                 if (!this.hasNext()) {
                     throw new NoSuchElementException();
                 }
-               return iterator().next();
+                element = element.next;
+                return element.item;
             }
         };
     }
