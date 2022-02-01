@@ -11,10 +11,26 @@ public class SimpleLinkedListTest {
 
     @Test
     public void add() {
+        List<Integer> list = new SimpleLinkedList<>();
+        list.add(100);
+        list.add(1000);
+        list.add(-100);
+        list.add(0);
+        assertThat(list.get(0), Is.is(100));
+        assertThat(list.get(1), Is.is(1000));
+        assertThat(list.get(2), Is.is(-100));
+        assertThat(list.get(3), Is.is(0));
     }
 
     @Test
     public void get() {
+        List<String> list = new SimpleLinkedList<>();
+        list.add("2_000_000");
+        list.add("second");
+        list.add("third");
+        assertThat(list.get(0), Is.is("2_000_000"));
+        assertThat(list.get(1), Is.is("second"));
+        assertThat(list.get(2), Is.is("third"));
     }
 
     @Test
