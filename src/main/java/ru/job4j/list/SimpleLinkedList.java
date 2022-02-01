@@ -42,7 +42,7 @@ public class SimpleLinkedList<E> implements List<E> {
         Objects.checkIndex(index, size);
         Node<E> element = first;
         for (int i = 0; i < index; i++) {
-           element = element.next;
+            element = element.next;
         }
         return element.item;
     }
@@ -55,15 +55,11 @@ public class SimpleLinkedList<E> implements List<E> {
 
             @Override
             public boolean hasNext() {
-                boolean exists = false;
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                if (element != null) {
-                        exists = true;
-                    }
-                return exists;
-                }
+                return element != null;
+            }
 
             @Override
             public E next() {
