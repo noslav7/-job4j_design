@@ -55,13 +55,14 @@ public class SimpleLinkedList<E> implements List<E> {
 
             @Override
             public boolean hasNext() {
+                boolean exists = false;
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
                 if (element != null) {
-                        return true;
+                        exists = true;
                     }
-                return false;
+                return exists;
                 }
 
             @Override
