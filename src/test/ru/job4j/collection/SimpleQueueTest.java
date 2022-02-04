@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import java.util.NoSuchElementException;
 
-public class SimpleQueueTest {
+public class  SimpleQueueTest {
 
     @Test
     public void whenPushPoll() {
