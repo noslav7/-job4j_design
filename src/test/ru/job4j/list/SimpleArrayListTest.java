@@ -1,23 +1,22 @@
 package ru.job4j.list;
 
-import static org.junit.Assert.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import ru.job4j.collection.SimpleArrayList;
 
+import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.stream.IntStream;
 
 public class SimpleArrayListTest {
-/*
-    List<Integer> list;
+
+    ArrayList<Integer> list;
 
     @Before
     public void initData() {
-        list = new SimpleArrayList<>(5);
+ //       list = new SimpleArrayList<>(5);
         list.add(1);
         list.add(2);
         list.add(3);
@@ -59,7 +58,7 @@ public class SimpleArrayListTest {
 
     @Test
     public void whenAddNullThenMustBeSameBehavior() {
-        list = new SimpleArrayList<>(3);
+ //       list = new SimpleArrayList<>(3);
         list.add(null);
         list.add(null);
         Assert.assertEquals(2, list.size());
@@ -80,13 +79,13 @@ public class SimpleArrayListTest {
 
     @Test
     public void whenGetIteratorFromEmptyListThenHasNextReturnFalse() {
-        list = new SimpleArrayList<>(5);
+//        list = new SimpleArrayList<>(5);
         Assert.assertFalse(list.iterator().hasNext());
     }
 
     @Test(expected = NoSuchElementException.class)
     public void whenGetIteratorFromEmptyListThenNextThrowException() {
-        list = new SimpleArrayList<>(5);
+ //       list = new SimpleArrayList<>(5);
         list.iterator().next();
     }
 
@@ -125,6 +124,5 @@ public class SimpleArrayListTest {
         Iterator<Integer> iterator = list.iterator();
         list.add(0);
         iterator.next();
-    }*/
-
+    }
 }
