@@ -16,7 +16,7 @@ public class SimpleArrayListTest {
 
     @Before
     public void initData() {
- //       list = new SimpleArrayList<>(5);
+ //*       list = new SimpleArrayList<>(5);   */
         list.add(1);
         list.add(2);
         list.add(3);
@@ -58,7 +58,7 @@ public class SimpleArrayListTest {
 
     @Test
     public void whenAddNullThenMustBeSameBehavior() {
- //       list = new SimpleArrayList<>(3);
+ //*       list = new SimpleArrayList<>(3);  */
         list.add(null);
         list.add(null);
         Assert.assertEquals(2, list.size());
@@ -79,13 +79,13 @@ public class SimpleArrayListTest {
 
     @Test
     public void whenGetIteratorFromEmptyListThenHasNextReturnFalse() {
-//        list = new SimpleArrayList<>(5);
+//*        list = new SimpleArrayList<>(5);   */
         Assert.assertFalse(list.iterator().hasNext());
     }
 
     @Test(expected = NoSuchElementException.class)
     public void whenGetIteratorFromEmptyListThenNextThrowException() {
- //       list = new SimpleArrayList<>(5);
+ //*       list = new SimpleArrayList<>(5);  */
         list.iterator().next();
     }
 
