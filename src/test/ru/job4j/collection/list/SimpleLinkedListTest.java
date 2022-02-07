@@ -35,7 +35,7 @@ public class SimpleLinkedListTest {
 
     @Test
     public void whenAddAndGet() {
-        ru.job4j.list.List<Integer> list = new SimpleLinkedList<>();
+        List<Integer> list = new SimpleLinkedList<>();
         list.add(1);
         list.add(2);
         assertThat(list.get(0), Is.is(1));
@@ -44,7 +44,7 @@ public class SimpleLinkedListTest {
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void whenGetFromOutOfBoundThenExceptionThrown() {
-        ru.job4j.list.List<Integer> list = new SimpleLinkedList<>();
+        List<Integer> list = new SimpleLinkedList<>();
         list.add(1);
         list.add(2);
         list.get(2);
@@ -52,7 +52,7 @@ public class SimpleLinkedListTest {
 
     @Test
     public void whenAddIterHasNextTrue() {
-        ru.job4j.list.List<Integer> list = new SimpleLinkedList<>();
+        List<Integer> list = new SimpleLinkedList<>();
         list.add(1);
         Iterator<Integer> it = list.iterator();
         assertThat(it.hasNext(), Is.is(true));
@@ -60,7 +60,7 @@ public class SimpleLinkedListTest {
 
     @Test
     public void whenAddIterNextOne() {
-        ru.job4j.list.List<Integer> list = new SimpleLinkedList<>();
+        List<Integer> list = new SimpleLinkedList<>();
         list.add(1);
         Iterator<Integer> it = list.iterator();
         assertThat(it.next(), Is.is(1));
@@ -68,14 +68,14 @@ public class SimpleLinkedListTest {
 
     @Test
     public void whenEmptyIterHashNextFalse() {
-        ru.job4j.list.List<Integer> list = new SimpleLinkedList<>();
+        List<Integer> list = new SimpleLinkedList<>();
         Iterator<Integer> it = list.iterator();
         assertThat(it.hasNext(), Is.is(false));
     }
 
     @Test
     public void whenAddIterMultiHasNextTrue() {
-        ru.job4j.list.List<Integer> list = new SimpleLinkedList<>();
+        List<Integer> list = new SimpleLinkedList<>();
         list.add(1);
         Iterator<Integer> it = list.iterator();
         assertThat(it.hasNext(), Is.is(true));
@@ -84,7 +84,7 @@ public class SimpleLinkedListTest {
 
     @Test
     public void whenAddIterNextOneNextTwo() {
-        ru.job4j.list.List<Integer> list = new SimpleLinkedList<>();
+        List<Integer> list = new SimpleLinkedList<>();
         list.add(1);
         list.add(2);
         Iterator<Integer> it = list.iterator();
