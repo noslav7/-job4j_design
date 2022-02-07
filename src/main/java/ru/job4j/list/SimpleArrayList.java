@@ -12,14 +12,6 @@ public class SimpleArrayList<T> implements List<T> {
     public SimpleArrayList() {
     }
 
-    @Override
-    public void add(T value) {
-        checkSize(size);
-        container[size] = value;
-        size++;
-        modCount++;
-    }
-
     public T set(int index, T newValue) {
         T element = get(index);
         container[index] = newValue;
@@ -33,12 +25,6 @@ public class SimpleArrayList<T> implements List<T> {
         size--;
         modCount++;
         return element;
-    }
-
-    @Override
-    public T get(int index) {
-        Objects.checkIndex(index, size);
-        return container[index];
     }
 
     @Override
