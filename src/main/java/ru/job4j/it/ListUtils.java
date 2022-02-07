@@ -7,13 +7,10 @@ public class ListUtils {
 
     public static <T> void addBefore(List<T> list, int index, T value) {
         Objects.checkIndex(index, list.size());
-        ListIterator<T> iterator = list.listIterator();
-        while (iterator.hasNext()) {
-            if (iterator.nextIndex() == index) {
-                iterator.add(value);
-                break;
-            }
-            iterator.next();
+        ListIterator<T> iterator = list.listIterator(index);
+        while (iterator.hasNext() && iterator.nextIndex() == index) {
+                 iterator.add(value);
+                 iterator.next();
         }
     }
 
@@ -22,13 +19,10 @@ public class ListUtils {
         if (index == list.size() - 1) {
             list.add(value);
         } else {
-            ListIterator<T> iterator = list.listIterator();
-            while (iterator.hasNext()) {
-                if (iterator.nextIndex() == (index + 1)) {
+            ListIterator<T> iterator = list.listIterator(index + 1);
+            while (iterator.hasNext() && iterator.nextIndex() == (index + 1)) {
                     iterator.add(value);
-                    break;
-                }
-                iterator.next();
+                    iterator.next();
             }
         }
     }
@@ -36,7 +30,8 @@ public class ListUtils {
     public static <T> void removeIf(List<T> list, Predicate<T> filter) {
         ListIterator<T> iterator = list.listIterator();
         while (iterator.hasNext()) {
-            if (iterator.next() == filter) {
+            T element = iterator.next();
+            if (element.equals(filter)) {
                 iterator.remove();
             }
         }
@@ -45,7 +40,8 @@ public class ListUtils {
     public static <T> void replaceIf(List<T> list, Predicate<T> filter, T value) {
         ListIterator<T> iterator = list.listIterator();
         while (iterator.hasNext()) {
-            if (iterator.next() == filter) {
+            T element = iterator.next();
+            if (element.equals(filter)) {
                 iterator.set(value);
             }
         }
