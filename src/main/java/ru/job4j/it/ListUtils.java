@@ -10,31 +10,32 @@ public class ListUtils {
         Objects.checkIndex(index, list.size());
         ListIterator<T> iterator = list.listIterator(index);
                  iterator.add(value);
-                 iterator.next();
     }
 
     public static <T> void addAfter(List<T> list, int index, T value) {
         Objects.checkIndex(index, list.size());
-        if (index == list.size() - 1) {
-            list.add(value);
-        } else {
-            ListIterator<T> iterator = list.listIterator(index + 1);
+        ListIterator<T> iterator = list.listIterator(index + 1);
                     iterator.add(value);
-                    iterator.next();
-        }
     }
 
     public static <T> void removeIf(List<T> list, Predicate<T> filter) {
-        List<T> result = list.stream()
-                .filter(filter)
-                .toList();
+        ListIterator<T> iterator = list.listIterator();
+        while (iterator.hasNext()) {
+            T element = iterator.next();
+            if (filter.test(element)) {
+                iterator.remove();
+            }
+        }
     }
 
     public static <T> void replaceIf(List<T> list, Predicate<T> filter, T value) {
-        List<T> result = list.stream()
-                .filter(filter)
-                .map(item -> value)
-                .toList();
+        ListIterator<T> iterator = list.listIterator();
+        while (iterator.hasNext()) {
+            T element = iterator.next();
+            if (filter.test(element)) {
+                iterator.set(value);
+            }
+        }
     }
 
     public static <T> void removeAll(List<T> list, List<T> elements) {
