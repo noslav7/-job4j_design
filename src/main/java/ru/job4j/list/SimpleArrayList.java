@@ -4,7 +4,7 @@ import ru.job4j.list.List;
 
 import java.util.*;
 
-public class SimpleArrayList<T> {
+public class SimpleArrayList<T> implements List<T> {
     private T[] container;
 
     private int size;
@@ -14,6 +14,7 @@ public class SimpleArrayList<T> {
     public SimpleArrayList() {
     }
 
+    @Override
     public void add(T value) {
         checkSize(size);
         container[size] = value;
@@ -21,12 +22,14 @@ public class SimpleArrayList<T> {
         modCount++;
     }
 
+    @Override
     public T set(int index, T newValue) {
         T element = get(index);
         container[index] = newValue;
         return element;
     }
 
+    @Override
     public T remove(int index) {
         T element = get(index);
         System.arraycopy(container, index + 1, container, index, container.length - index - 1);
@@ -36,15 +39,18 @@ public class SimpleArrayList<T> {
         return element;
     }
 
+    @Override
     public T get(int index) {
         Objects.checkIndex(index, size);
         return container[index];
     }
 
+    @Override
     public int size() {
         return size;
     }
 
+    @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
             int elCount = 0;
@@ -69,6 +75,7 @@ public class SimpleArrayList<T> {
         };
     }
 
+        @Override
         public void checkSize(int size) {
         if (size + 1 > container.length && container.length == 0) {
             container = Arrays.copyOf(container, 1);
