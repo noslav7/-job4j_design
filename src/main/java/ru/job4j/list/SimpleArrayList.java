@@ -1,5 +1,7 @@
 package ru.job4j.list;
 
+import ru.job4j.collection.list.SimpleLinkedList;
+
 import java.util.*;
 
 public class SimpleArrayList<T> implements List<T> {
@@ -10,6 +12,12 @@ public class SimpleArrayList<T> implements List<T> {
     private int modCount;
 
     public SimpleArrayList() {
+    }
+
+
+    @Override
+    public void add(T value) {
+
     }
 
     public T set(int index, T newValue) {
@@ -28,48 +36,12 @@ public class SimpleArrayList<T> implements List<T> {
     }
 
     @Override
-    public boolean contains(T element) {
-        boolean contains = false;
-        for (T cell : container) {
-            if (cell.equals(element)) {
-                contains = true;
-                break;
-            }
-        }
-        return contains;
-    }
-
-    @Override
-    public int indexOf(T element) {
-        int index = 0;
-        for (int i = 0; i < container.length; i++) {
-            if (container[i].equals(element)) {
-                index = i;
-                break;
-            }
-        }
-        return index;
-    }
-
-    @Override
-    public int lastIndexOf(T element) {
-        int index = 0;
-        for (int i = container.length - 1; i > -1; i--) {
-            if (container[i].equals(element)) {
-                index = i;
-                break;
-            }
-        }
-        return index;
-    }
-
-    @Override
     public int size() {
         return size;
     }
 
     @Override
-    public List<T> subList(int fromIndex, int toIndex) {
+    public T get(int index) {
         return null;
     }
 

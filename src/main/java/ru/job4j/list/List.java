@@ -2,9 +2,9 @@ package ru.job4j.list;
 
 public interface List<T> extends Iterable<T> {
 
-    boolean contains(T element);
-    int indexOf(T element);
-    int lastIndexOf(T element);
+    void add(T value);
+    T set(int index, T newValue);
+    T remove(int index);
     int size();
-    List<T> subList(int fromIndex, int toIndex);
+    T get(int index);
 }
