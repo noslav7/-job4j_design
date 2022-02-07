@@ -68,7 +68,7 @@ public class SimpleArrayList<T> implements List<T> {
     @Override
     public int lastIndexOf(T element) {
         int index = 0;
-        for (int i = container.length - 1; i > -1 ; i--) {
+        for (int i = container.length - 1; i > -1; i--) {
             if (container[i].equals(element)) {
                 index = i;
                 break;
