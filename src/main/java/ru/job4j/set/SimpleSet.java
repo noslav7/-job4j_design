@@ -5,21 +5,19 @@ import ru.job4j.list.SimpleArrayList;
 import java.util.Iterator;
 
 public class SimpleSet<T> implements Set<T> {
-    private SimpleArrayList<T> set = new SimpleArrayList<>();
+    private SimpleArrayList<T> set = new SimpleArrayList<>(0);
 
     @Override
     public boolean add(T value) {
-        boolean add = true;
-        if (contains(value)) {
-            add = false;
+        boolean add = !contains(value);
+        if (add) {
+            set.add(value);
         }
         return add;
     }
 
     @Override
     public boolean contains(T value) {
-        return false;
-     } /*
         boolean contains = false;
         for (T cell : set) {
             if (cell.equals(value)) {
@@ -28,7 +26,7 @@ public class SimpleSet<T> implements Set<T> {
         }
         return contains;
     }
-*/
+
     @Override
     public Iterator<T> iterator() {
         return set.iterator();

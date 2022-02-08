@@ -11,13 +11,15 @@ public class SimpleArrayList<T> implements List<T> {
 
     private int modCount;
 
-    public SimpleArrayList() {
+    public SimpleArrayList(int capacity) {
+        this.container = (T[]) new Object[capacity];
     }
-
 
     @Override
     public void add(T value) {
-
+        checkSize(size);
+        container[size++] = value;
+        modCount++;
     }
 
     public T set(int index, T newValue) {
@@ -42,7 +44,8 @@ public class SimpleArrayList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        return null;
+        Objects.checkIndex(index, size);
+        return container[index];
     }
 
     @Override
@@ -70,11 +73,9 @@ public class SimpleArrayList<T> implements List<T> {
         };
     }
 
-        public void checkSize(int size) {
-        if (size + 1 > container.length && container.length == 0) {
-            container = Arrays.copyOf(container, 1);
-        } else if (size + 1 > container.length && container.length != 0) {
-                container = Arrays.copyOf(container, container.length * 2);
-            }
+    public void checkSize(int size) {
+        if (size >= container.length) {
+            container = Arrays.copyOf(container, container.length * 2 + 1);
         }
     }
+}
