@@ -2,7 +2,6 @@ package ru.job4j.it;
 
 import java.util.*;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class ListUtils {
 
@@ -21,8 +20,7 @@ public class ListUtils {
     public static <T> void removeIf(List<T> list, Predicate<T> filter) {
         ListIterator<T> iterator = list.listIterator();
         while (iterator.hasNext()) {
-            T element = iterator.next();
-            if (filter.test(element)) {
+            if (filter.test(iterator.next())) {
                 iterator.remove();
             }
         }
@@ -31,8 +29,7 @@ public class ListUtils {
     public static <T> void replaceIf(List<T> list, Predicate<T> filter, T value) {
         ListIterator<T> iterator = list.listIterator();
         while (iterator.hasNext()) {
-            T element = iterator.next();
-            if (filter.test(element)) {
+           if (filter.test(iterator.next())) {
                 iterator.set(value);
             }
         }

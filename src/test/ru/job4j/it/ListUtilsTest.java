@@ -46,14 +46,14 @@ public class ListUtilsTest {
     public void whenRemoveIfValue() {
         List<Integer> input = new ArrayList<>(Arrays.asList(0, 1, 2));
         ListUtils.removeIf(input, predicate);
-        assertThat(input, is(Arrays.asList(0, 1, 2)));
+        assertThat(input, is(Arrays.asList(0, 1)));
     }
 
     @Test
     public void whenReplaceIfValue() {
         List<Integer> input = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4));
-        ListUtils.replaceIf(input, predicate, 3);
-        assertThat(input, is(Arrays.asList(0, 1, 2, 3, 4)));
+        ListUtils.replaceIf(input, predicate, 8);
+        assertThat(input, is(Arrays.asList(0, 1, 8, 3, 4)));
     }
 
     @Test
