@@ -1,7 +1,5 @@
 package ru.job4j.list;
 
-import ru.job4j.collection.list.SimpleLinkedList;
-
 import java.util.*;
 
 public class SimpleArrayList<T> implements List<T> {
@@ -22,12 +20,14 @@ public class SimpleArrayList<T> implements List<T> {
         modCount++;
     }
 
+    @Override
     public T set(int index, T newValue) {
         T element = get(index);
         container[index] = newValue;
         return element;
     }
 
+    @Override
     public T remove(int index) {
         T element = get(index);
         System.arraycopy(container, index + 1, container, index, container.length - index - 1);
@@ -73,7 +73,7 @@ public class SimpleArrayList<T> implements List<T> {
         };
     }
 
-    public void checkSize(int size) {
+    private void checkSize(int size) {
         if (size >= container.length) {
             container = Arrays.copyOf(container, container.length * 2 + 1);
         }

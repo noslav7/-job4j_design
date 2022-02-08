@@ -11,8 +11,8 @@ import java.util.NoSuchElementException;
 import java.util.stream.IntStream;
 
 public class SimpleArrayListTest {
-/*
-    ArrayList<Integer> list;
+
+    List<Integer> list;
 
     @Before
     public void initData() {
@@ -124,5 +124,5 @@ public class SimpleArrayListTest {
         Iterator<Integer> iterator = list.iterator();
         list.add(0);
         iterator.next();
-    }*/
+    }
 }
