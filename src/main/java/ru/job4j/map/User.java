@@ -19,11 +19,12 @@ public class User {
     }
 
     @Override
-    public int hashCode() {
-       int result = birthday.hashCode();
-       result = 31 * result + Integer.hashCode(children);
-       result = 31 * result + name.hashCode();
-       return result;
+    public boolean equals(Object o) {
+        if (!(o instanceof User)) {
+            return false;
+        }
+        return Objects.equals(this.name, ((User) o).name) && this.children == ((User) o).children
+                && this.birthday == ((User) o).birthday;
     }
 
     public static void main(String[] args) {
