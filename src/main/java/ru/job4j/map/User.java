@@ -27,14 +27,24 @@ public class User {
                 && this.birthday == ((User) o).birthday;
     }
 
+    @Override
+    public int hashCode() {
+        int result = birthday.hashCode();
+        result = 31 * result + Integer.hashCode(children);
+        result = 31 * result + name.hashCode();
+        return result;
+    }
+
     public static void main(String[] args) {
         Timestamp irinaStamp = new Timestamp(2021, 4, 9, 20, 10, 5, 0);
         Timestamp vitaliyStamp = new Timestamp(2021, 4, 9, 20, 10, 5, 0);
-        User user1 = new User("Катя", 9, irinaStamp);
-        User user2 = new User("Маша", 10, vitaliyStamp);
+        User user1 = new User("Катя", 0, irinaStamp);
+        User user2 = new User("Катя", 0, vitaliyStamp);
         Map<User, Object> map = new HashMap<>();
         map.put(user1, new Object());
         map.put(user2, new Object());
+        boolean eq = map.get(user1).equals(map.get(user2));
         System.out.println(map);
+        System.out.println(eq);
     }
 }
