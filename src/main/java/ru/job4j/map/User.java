@@ -39,7 +39,7 @@ public class User {
         Timestamp irinaStamp = new Timestamp(2021, 4, 9, 20, 10, 5, 0);
         Timestamp vitaliyStamp = new Timestamp(2021, 4, 9, 20, 10, 5, 0);
         User user1 = new User("Катя", 0, irinaStamp);
-        User user2 = new User("Катя", 0, vitaliyStamp);
+        User user2 = new User("Катя", 0, irinaStamp);
         Map<User, Object> map = new HashMap<>();
         map.put(user1, new Object());
         map.put(user2, new Object());
