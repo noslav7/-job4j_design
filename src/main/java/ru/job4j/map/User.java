@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import static java.util.Objects.hash;
 
 public class User {
+    /*
     private String name;
     private int children;
     private Timestamp birthday;
@@ -46,5 +47,5 @@ public class User {
         boolean eq = map.get(user1).equals(map.get(user2));
         System.out.println(map);
         System.out.println(eq);
-    }
+    }*/
 }
