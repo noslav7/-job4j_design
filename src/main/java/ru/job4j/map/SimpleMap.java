@@ -56,10 +56,10 @@ public class SimpleMap<K, V> implements Map<K, V> {
     @Override
     public boolean remove(K key) {
         boolean removed = false;
-   //*     if (get(key) ==  ) {  */
+   /*     if (get(key) ==  ) {  */
             removed = true;
             modCount--;
-  //*      }                   */
+  /*      }                   */
         return removed;
     }
 
