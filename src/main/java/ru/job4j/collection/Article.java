@@ -14,7 +14,7 @@ public class Article {
         List<String> end = Arrays.stream(wordEnd).collect(Collectors.toList());
         HashSet<String> set = new HashSet<String>(start);
         boolean isOriginal = true;
-        for(int i = 0; i < end.size(); i++) {
+        for (int i = 0; i < end.size(); i++) {
               if (!set.contains(end.get(i))) {
                     isOriginal = false;
                     break;

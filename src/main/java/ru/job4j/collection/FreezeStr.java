@@ -14,7 +14,7 @@ public class FreezeStr {
         List<Character> first = left.chars().mapToObj(c -> (char) c).collect(Collectors.toList());
         List<Character> second = right.chars().mapToObj(c -> (char) c).collect(Collectors.toList());
         List<Character> list = new ArrayList<>(first);
-        for(int i = 0; i < second.size(); i++) {
+        for (int i = 0; i < second.size(); i++) {
             if (!list.contains(second.get(i))) {
                 equal = false;
                 break;

@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class SimpleMap<K, V> implements Map<K, V>{
+public class SimpleMap<K, V> implements Map<K, V> {
     private static final float LOAD_FACTOR = 0.75f;
 
     private int capacity = 8;
@@ -22,7 +22,7 @@ public class SimpleMap<K, V> implements Map<K, V>{
         if (modCount < 8) {
             put = true;
             index = indexFor(hash(hashCode()));
-  //*       table[index] = value;  */
+    //*     table[index] = value;  */
             modCount++;
         }
         return put;
@@ -30,7 +30,8 @@ public class SimpleMap<K, V> implements Map<K, V>{
 
     private int hash(int hashCode) {
         int h;
-        return (hashCode == 0) ? 0 : (h = hashCode) ^ (h >>> 16);
+        int result = (hashCode == 0) ? 0 : (h = hashCode) ^ (h >>> 16);
+        return result;
     }
 
     private int indexFor(int hash) {
