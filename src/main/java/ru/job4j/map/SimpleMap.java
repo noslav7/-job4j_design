@@ -15,19 +15,21 @@ public class SimpleMap<K, V> implements Map<K, V>{
     private int modCount = 0;
 
     private MapEntry<K, V>[] table = new MapEntry[capacity];
-
     @Override
     public boolean put(K key, V value) {
+        int index;
         boolean put = false;
         if (modCount < 8) {
             put = true;
+            index = indexFor(hash(hashCode()));
+  //*       table[index] = value;  */
             modCount++;
         }
         return put;
     }
 
     private int hash(int hashCode) {
-        int h = 0;
+        int h;
         return (hashCode == 0) ? 0 : (h = hashCode) ^ (h >>> 16);
     }
 
@@ -36,7 +38,9 @@ public class SimpleMap<K, V> implements Map<K, V>{
     }
 
     private void expand() {
-        capacity = (int) (capacity * 1.5 + 1);
+        if (modCount >= LOAD_FACTOR * capacity) {
+            capacity = (int) (capacity * 1.5 + 1);
+        }
     }
 
     @Override
