@@ -3,6 +3,7 @@ package ru.job4j.tree;
 import java.util.LinkedList;
 import java.util.Optional;
 import java.util.Queue;
+import java.util.function.Predicate;
 
 public class SimpleTree<E> implements Tree<E> {
 
@@ -12,15 +13,8 @@ public class SimpleTree<E> implements Tree<E> {
         this.root = new Node<>(root);
     }
 
-    @Override
-    public boolean add(E parent, E child) {
-        Optional<Node<E>> parentNode = findBy(parent);
-        Optional<Node<E>> childNode = findBy(child);
-        boolean result = parentNode.isPresent() && childNode.isEmpty();
-        if (result) {
-            parentNode.get().children.add(new Node<>(child));
-         }
-        return result;
+    private Optional<Node<E>> finVyPredicate(Predicate<Node<E>> condition) {
+
     }
 
     @Override
@@ -38,4 +32,20 @@ public class SimpleTree<E> implements Tree<E> {
         }
         return rsl;
     }
+    public boolean isBinary() {
+
+    }
+
+    @Override
+    public boolean add(E parent, E child) {
+        Optional<Node<E>> parentNode = findBy(parent);
+        Optional<Node<E>> childNode = findBy(child);
+        boolean result = parentNode.isPresent() && childNode.isEmpty();
+        if (result) {
+            parentNode.get().children.add(new Node<>(child));
+         }
+        return result;
+    }
+
+
 }
