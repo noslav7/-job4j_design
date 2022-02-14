@@ -19,7 +19,7 @@ public class SimpleTree<E> implements Tree<E> {
         boolean result = parentNode.isPresent() && childNode.isEmpty();
         if (result) {
             parentNode.get().children.add(new Node<>(child));
-        }
+         }
         return result;
     }
 
