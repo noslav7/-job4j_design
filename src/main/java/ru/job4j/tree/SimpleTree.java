@@ -13,12 +13,25 @@ public class SimpleTree<E> implements Tree<E> {
         this.root = new Node<>(root);
     }
 
-    private Optional<Node<E>> finVyPredicate(Predicate<Node<E>> condition) {
-
+    private Optional<Node<E>> findByPredicate(Predicate<Node<E>> condition) {
+        Optional<Node<E>> rsl = Optional.empty();
+        Queue<Node<E>> data = new LinkedList<>();
+        data.offer(this.root);
+        int numberOfElements = 0;
+        for (Node<E> element : data) {
+            if (condition.test(element)) {
+                numberOfElements++;
+            }
+            if (numberOfElements > 2) {
+                rsl = Optional.of(element);
+            }
+        }
+        return rsl;
     }
 
     @Override
     public Optional<Node<E>> findBy(E value) {
+        Predicate<Integer> equalsChild = e -> (e.equals(child));
         Optional<Node<E>> rsl = Optional.empty();
         Queue<Node<E>> data = new LinkedList<>();
         data.offer(this.root);
@@ -32,8 +45,21 @@ public class SimpleTree<E> implements Tree<E> {
         }
         return rsl;
     }
-    public boolean isBinary() {
 
+    public boolean isBinary() {
+        Predicate<Integer> equalsChild = e -> (e.equals(child));
+        Optional<Node<E>> rsl = Optional.empty();
+        Queue<Node<E>> data = new LinkedList<>();
+        data.offer(this.root);
+        while (!data.isEmpty()) {
+            Node<E> el = data.poll();
+            if (el.value.equals(value)) {
+                rsl = Optional.of(el);
+                break;
+            }
+            data.addAll(el.children);
+        }
+        return rsl;
     }
 
     @Override
