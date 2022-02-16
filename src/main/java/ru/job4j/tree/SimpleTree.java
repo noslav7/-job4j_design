@@ -17,12 +17,8 @@ public class SimpleTree<E> implements Tree<E> {
         Optional<Node<E>> rsl = Optional.empty();
         Queue<Node<E>> data = new LinkedList<>();
         data.offer(this.root);
-        int numberOfElements = 0;
         for (Node<E> element : data) {
             if (condition.test(element)) {
-                numberOfElements++;
-            }
-            if (numberOfElements > 2) {
                 rsl = Optional.of(element);
             }
         }
@@ -31,13 +27,13 @@ public class SimpleTree<E> implements Tree<E> {
 
     @Override
     public Optional<Node<E>> findBy(E value) {
-        Predicate<Integer> equalsChild = e -> (e.equals(child));
+        Predicate<Node<E>> equalsChild = e -> (e.equals(value));
         Optional<Node<E>> rsl = Optional.empty();
         Queue<Node<E>> data = new LinkedList<>();
         data.offer(this.root);
         while (!data.isEmpty()) {
             Node<E> el = data.poll();
-            if (el.value.equals(value)) {
+            if (findByPredicate(equalsChild).isPresent()) {
                 rsl = Optional.of(el);
                 break;
             }
@@ -47,19 +43,21 @@ public class SimpleTree<E> implements Tree<E> {
     }
 
     public boolean isBinary() {
-        Predicate<Integer> equalsChild = e -> (e.equals(child));
-        Optional<Node<E>> rsl = Optional.empty();
+        boolean isBinary = false;
         Queue<Node<E>> data = new LinkedList<>();
         data.offer(this.root);
+        int cellCount = 0;
         while (!data.isEmpty()) {
             Node<E> el = data.poll();
-            if (el.value.equals(value)) {
-                rsl = Optional.of(el);
+            Predicate<Node<E>> equalsChild = e -> (e.equals(el));
+            cellCount++;
+            if (cellCount > 2) {
+                isBinary = true;
                 break;
             }
             data.addAll(el.children);
         }
-        return rsl;
+        return isBinary;
     }
 
     @Override
@@ -69,9 +67,7 @@ public class SimpleTree<E> implements Tree<E> {
         boolean result = parentNode.isPresent() && childNode.isEmpty();
         if (result) {
             parentNode.get().children.add(new Node<>(child));
-         }
+        }
         return result;
     }
-
-
 }
