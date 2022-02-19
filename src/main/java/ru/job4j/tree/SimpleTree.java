@@ -16,16 +16,10 @@ public class SimpleTree<E> implements Tree<E> {
     private Optional<Node<E>> findByPredicate(Predicate<Node<E>> condition) {
         Optional<Node<E>> rsl = Optional.empty();
         Queue<Node<E>> data = new LinkedList<>();
-        int count = 0;
         data.offer(this.root);
         for (Node<E> element : data) {
-            rsl = Optional.empty();
             if (condition.test(element)) {
                 rsl = Optional.of(element);
-                count++;
-                if (count > 2) {
-                    break;
-                }
             }
         }
         return rsl;
