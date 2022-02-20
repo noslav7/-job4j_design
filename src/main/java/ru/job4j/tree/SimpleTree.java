@@ -17,10 +17,13 @@ public class SimpleTree<E> implements Tree<E> {
         Optional<Node<E>> rsl = Optional.empty();
         Queue<Node<E>> data = new LinkedList<>();
         data.offer(this.root);
-        for (Node<E> element : data) {
-            if (condition.test(element)) {
-                rsl = Optional.of(element);
+        while (!data.isEmpty()) {
+            Node<E> el = data.poll();
+            if (condition.test(el)) {
+                rsl = Optional.of(el);
+                break;
             }
+            data.addAll(el.children);
         }
         return rsl;
     }
