@@ -17,10 +17,13 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     @Override
     public boolean put(K key, V value) {
+        if (table.length == capacity * LOAD_FACTOR) {
+            expand();
+        }
         int index;
         boolean put = false;
         MapEntry<K, V> element = null;
-        if (modCount < 8) {
+        if (modCount < table.length) {
             put = true;
             index = indexFor(hash(hashCode()));
             if (table[index] != null) {
@@ -45,18 +48,17 @@ public class SimpleMap<K, V> implements Map<K, V> {
     private void expand() {
         if (modCount >= LOAD_FACTOR * capacity) {
             capacity = (int) (capacity * 1.5 + 1);
+            MapEntry<K, V>[] newTable = new MapEntry[capacity];
+            for (var cell : table) {
+
+            }
         }
     }
 
     @Override
     public V get(K key) {
-        V value = null;
         int index = indexFor(hash(hashCode()));
-        for (int i = 0; i < table.length; i++) {
-            if (index == i) {
-                value = (V) table[i];
-            }
-        }
+        V value = (V) table[index];
         return key == null ? null : value;
     }
 
