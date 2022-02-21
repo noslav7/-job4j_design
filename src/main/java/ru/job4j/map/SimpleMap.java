@@ -1,5 +1,6 @@
 package ru.job4j.map;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -57,7 +58,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
     @Override
     public V get(K key) {
         int index = indexFor(hash(hashCode()));
-        V value = (V) table[index];
+        V value = table[index].value;
         return key == null ? null : value;
     }
 
@@ -77,12 +78,11 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
         return new Iterator<K>() {
             @Override
-
             public boolean hasNext() {
-                while (count < table.length && table[count] % 2 == 1) {
-                    count++;
+                if (modCount != count) {
+                    throw new ConcurrentModificationException();
                 }
-                return count < table.length && table[count] % 2 == 0;
+                return count < table.length;
             }
 
             @Override
@@ -90,18 +90,19 @@ public class SimpleMap<K, V> implements Map<K, V> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return [count++];
+                return table[count++].key;
             }
-    };
+        };
+    }
 
-    private static class MapEntry<K, V> {
+        private static class MapEntry<K, V> {
 
-        K key;
-        V value;
+            K key;
+            V value;
 
-        public MapEntry(K key, V value) {
-            this.key = key;
-            this.value = value;
+            public MapEntry(K key, V value) {
+                this.key = key;
+                this.value = value;
+            }
         }
     }
-}
