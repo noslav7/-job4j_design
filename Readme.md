@@ -1,2 +1,2 @@
 [![Build Status](https://travis-ci.com/noslav7/-job4j_design.svg?branch=master)](https://travis-ci.com/noslav7/-job4j_design)
-[![codecov](https://codecov.io/gh/noslav7/-job4j_design/branch/master/graph/badge.svg?token=LK17AUN4KM)](https://codecov.io/gh/noslav7/-job4j_design)
+[![codecov](https://codecov.io/gh/noslav7/job4j_design/branch/master/graph/badge.svg?token=LK17AUN4KM)](https://codecov.io/gh/noslav7/job4j_design)
