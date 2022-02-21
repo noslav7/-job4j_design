@@ -1,7 +1,5 @@
 package ru.job4j.map;
 
-import java.util.Arrays;
-import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -49,8 +47,9 @@ public class SimpleMap<K, V> implements Map<K, V> {
         if (modCount >= LOAD_FACTOR * capacity) {
             capacity = (int) (capacity * 1.5 + 1);
             MapEntry<K, V>[] newTable = new MapEntry[capacity];
-            for (var cell : table) {
-
+            for (int i = 0; i < table.length; i++) {
+                K key = table[i].key;
+                newTable[indexFor((Integer) key)] = table[i];
             }
         }
     }
@@ -78,29 +77,22 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
         return new Iterator<K>() {
             @Override
+
             public boolean hasNext() {
-                for (int i = 0; i < table.length; i++) {
-                    if (table[i] == null) {
-                        count++;
-                        break;
-                    }
+                while (count < table.length && table[count] % 2 == 1) {
+                    count++;
                 }
-                if (count != modCount) {
-                    throw new ConcurrentModificationException();
-                }
-                return count != table.length;
+                return count < table.length && table[count] % 2 == 0;
             }
 
             @Override
             public K next() {
-                if (!this.hasNext()) {
+                if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                K key = next();
-                return key;
+                return [count++];
             }
-        };
-    }
+    };
 
     private static class MapEntry<K, V> {
 
