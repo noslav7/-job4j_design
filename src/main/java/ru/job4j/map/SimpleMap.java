@@ -16,21 +16,20 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     @Override
     public boolean put(K key, V value) {
-        if (table.length == capacity * LOAD_FACTOR) {
+        if (table.length >= capacity * LOAD_FACTOR) {
             expand();
         }
         int index;
         boolean put = false;
-        MapEntry<K, V> element = null;
-        if (modCount < table.length) {
-            put = true;
+        if (count <= table.length) {
             index = indexFor(hash(hashCode()));
-            if (table[index] != null) {
-                put = false;
-            } else {
-                element = table[index];
+            if (table[index].value == null) {
+                put = true;
+                table[index].key = key;
+                table[index].value = value;
             }
             modCount++;
+            count++;
         }
         return put;
     }
@@ -59,13 +58,13 @@ public class SimpleMap<K, V> implements Map<K, V> {
     public V get(K key) {
         int index = indexFor(hash(hashCode()));
         V value = table[index].value;
-        return key == null ? null : value;
+        return key == table[index].key ? value : null;
     }
 
     @Override
     public boolean remove(K key) {
         boolean removed = false;
-        if (get(key) != null) {
+        if (get(key) == table[count]) {
             removed = true;
             modCount--;
         }
@@ -79,13 +78,10 @@ public class SimpleMap<K, V> implements Map<K, V> {
         return new Iterator<K>() {
             @Override
             public boolean hasNext() {
-                if (modCount != count) {
-                    throw new ConcurrentModificationException();
-                }
-                if (table[count] == null) {
+                while (count < table.length && count % 2 == 1) {
                     count++;
                 }
-                return count < table.length;
+                return count < table.length && count % 2 == 0;
             }
 
             @Override
