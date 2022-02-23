@@ -21,13 +21,11 @@ public class SimpleMap<K, V> implements Map<K, V> {
         }
         int index;
         boolean put = false;
-        if (count <= table.length) {
-            index = indexFor(hash(hashCode()));
-            if (table[index].value == null) {
-                put = true;
-                table[index].key = key;
-                table[index].value = value;
-            }
+        index = indexFor(hash(hashCode()));
+        if (table[index].value == null) {
+            put = true;
+            table[index].key = key;
+            table[index].value = value;
             modCount++;
             count++;
         }
@@ -94,14 +92,14 @@ public class SimpleMap<K, V> implements Map<K, V> {
         };
     }
 
-        private static class MapEntry<K, V> {
+    static class MapEntry<K, V> {
 
-            K key;
-            V value;
+        K key;
+        V value;
 
-            public MapEntry(K key, V value) {
-                this.key = key;
-                this.value = value;
-            }
+        public MapEntry(K key, V value) {
+            this.key = key;
+            this.value = value;
         }
     }
+}
