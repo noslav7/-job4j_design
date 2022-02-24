@@ -22,10 +22,9 @@ public class SimpleMap<K, V> implements Map<K, V> {
         int index;
         boolean put = false;
         index = indexFor(hash(hashCode()));
-        if (table[index].value == null) {
+        if (table[index] == null) {
             put = true;
-            table[index].key = key;
-            table[index].value = value;
+            table[index] = new MapEntry<>(key, value);
             modCount++;
             count++;
         }
