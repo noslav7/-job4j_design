@@ -79,11 +79,13 @@ public class SimpleMap<K, V> implements Map<K, V> {
     public Iterator<K> iterator() {
 
         return new Iterator<K>() {
-            int index = modCount;
+            int index;
+
+            int expectedIndex = modCount;
 
             @Override
             public boolean hasNext() {
-                if (index != modCount) {
+                if (expectedIndex != modCount) {
                     throw new ConcurrentModificationException();
                 }
                 while (index < table.length && table[index] == null) {
