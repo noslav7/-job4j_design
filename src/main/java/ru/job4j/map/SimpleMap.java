@@ -16,12 +16,12 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     @Override
     public boolean put(K key, V value) {
-        if (table.length >= capacity * LOAD_FACTOR) {
+        if (count >= capacity * LOAD_FACTOR) {
             expand();
         }
         int index;
         boolean put = false;
-        index = indexFor(hash(hashCode()));
+        index = indexFor(hash(key.hashCode()));
         if (table[index] == null) {
             put = true;
             table[index] = new MapEntry<>(key, value);
@@ -41,52 +41,52 @@ public class SimpleMap<K, V> implements Map<K, V> {
     }
 
     private void expand() {
-        if (modCount >= LOAD_FACTOR * capacity) {
-            capacity = (int) (capacity * 1.5 + 1);
-            MapEntry<K, V>[] newTable = new MapEntry[capacity];
-            for (int i = 0; i < table.length; i++) {
+        capacity = capacity * 2;
+        MapEntry<K, V>[] newTable = new MapEntry[capacity];
+        for (int i = 0; i < table.length; i++) {
+            if (table[i] != null) {
                 K key = table[i].key;
-                newTable[indexFor((Integer) key)] = table[i];
+                newTable[indexFor(hash(key.hashCode()))] = table[i];
             }
         }
     }
 
     @Override
     public V get(K key) {
-        int index = indexFor(hash(hashCode()));
-        return table[index].value;
+        int index = indexFor(hash(key.hashCode()));
+        V value = null;
+        if (table[index] == key) {
+            value = table[index].value;
+        }
+        return value;
     }
 
     @Override
     public boolean remove(K key) {
         boolean removed = false;
-        int index = indexFor(hash(hashCode()));
-        V value = table[index].value;
-        K newKey = null;
-        for (MapEntry<K, V> cell : table.entrySet()) {
-                if (cell.value.equals(value)) {
-                    newKey = cell.getKey();
-                    break;
-                }
-        }
-        if (key.equals(newKey)) {
-            removed = true;
-            modCount--;
+        int index = indexFor(hash(key.hashCode()));
+        for (int i = 0; i < table.length; i++) {
+            if (table[i].key == table[index]) {
+                removed = true;
+                table[i].value = null;
+                modCount--;
+                break;
+            }
         }
         return removed;
     }
 
     @Override
     public Iterator<K> iterator() {
-        count = modCount;
+        int index = modCount;
 
         return new Iterator<K>() {
             @Override
             public boolean hasNext() {
-                while (count < table.length && table[count] == null) {
-                    count++;
+                while (index < table.length && table[index] == null) {
+                    index++;
                 }
-                return count < table.length && table[count] != null;
+                return index < table.length && table[index] != null;
             }
 
             @Override
@@ -94,7 +94,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return table[count++].key;
+                return table[index++].key;
             }
         };
     }
