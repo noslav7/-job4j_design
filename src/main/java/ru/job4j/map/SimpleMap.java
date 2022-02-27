@@ -50,6 +50,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
                 newTable[indexFor(hash(key.hashCode()))] = table[i];
             }
         }
+        table = newTable;
     }
 
     @Override
