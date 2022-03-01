@@ -1,9 +1,6 @@
 package ru.job4j.question;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class Analize {
 
@@ -11,17 +8,25 @@ public class Analize {
         int added = 0;
         int edited = 0;
         int deleted = 0;
-        List<User> previousList = new ArrayList<>(previous);
-        List<User> currentList = new ArrayList<>(current);
-        for (int i = 0; i < previousList.size(); i++) {
-            if (!current.contains(previousList.get(i))) {
+        Map<Integer, String> previousMap = new HashMap<>();
+        for (User user : previous) {
+            previousMap.put(user.getId(), user.getName());
+        }
+        Map<Integer, String> currentMap = new HashMap<>();
+        for (User user : current) {
+            currentMap.put(user.getId(), user.getName());
+        }
+        for (User user : previous) {
+            currentMap.put(user.getId(), user.getName());
+            if (...) {
                 deleted++;
             }
-        }
-        for (int i = 0; i < currentList.size(); i++) {
-        if (!previousList.contains(currentList.get(i))) {
-            added++;
-        }
+            if (...) {
+                added++;
+            }
+            if (...) {
+                edited++;
+            }
         }
         return new Info(added, edited, deleted);
     }
