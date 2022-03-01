@@ -8,7 +8,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class AnalizeTest {
-
+/*
     @Test
     public void whenNotChanged() {
         User u1 = new User(1, "A");
@@ -72,5 +72,5 @@ public class AnalizeTest {
                 Analize.diff(previous, current),
                 is(new Info(1, 1, 1))
         );
-    }
+    }*/
 }

@@ -4,7 +4,7 @@ import java.io.FileOutputStream;
 import java.util.Arrays;
 
 public class ResultFile {
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         try (FileOutputStream out = new FileOutputStream("MatrixTest.java")) {
                 out.write(new int[]{1, 2, 3, 4, 5},
                         {2, 4, 6, 8, 10},
@@ -15,5 +15,5 @@ public class ResultFile {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }
