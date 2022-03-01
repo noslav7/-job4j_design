@@ -3,7 +3,7 @@ package ru.job4j.question;
 import java.util.*;
 
 public class Analize {
-
+/*
     public static Info diff(Set<User> previous, Set<User> current) {
         int added = 0;
         int edited = 0;
@@ -29,5 +29,5 @@ public class Analize {
             }
         }
         return new Info(added, edited, deleted);
-    }
+    }*/
 }
