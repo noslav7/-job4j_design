@@ -8,19 +8,23 @@ public class Analize {
         int added = 0;
         int edited = 0;
         int deleted = 0;
-        Map<Integer, String> previousMap = new HashMap<>();
+        Map<Integer, String> currentMap = new HashMap<>();
         for (User user : previous) {
-            previousMap.put(user.getId(), user.getName());
+            currentMap.put(user.getId(), user.getName());
         }
-        for (User user : current) {
-            previousMap.put(user.getId(), user.getName());
-            if (previousMap.size() + 1 == current.size() && !previousMap.containsKey(user.getId())) {
-                added++;
-            }
-            if ((previousMap.size() == current.size()) && previousMap.containsKey(user.getId())) {
+        Map<Integer, String> currentMapModified = new HashMap<>();
+        for (User user : previous) {
+            currentMapModified.put(user.getId(), user.getName());
+        }
+        for (User user : previous) {
+            currentMapModified.put(user.getId(), user.getName());
+            if (...)) {
                 edited++;
             }
-            if (previousMap.size() - 1 == current.size() && !previousMap.containsKey(user.getId())) {
+            if (...) {
+                added++;
+            }
+            if (...) {
                 deleted++;
             }
         }
