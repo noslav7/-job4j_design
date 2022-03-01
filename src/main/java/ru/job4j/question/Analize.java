@@ -8,10 +8,6 @@ public class Analize {
         int added = 0;
         int edited = 0;
         int deleted = 0;
-        Map<Integer, String> previousMap = new HashMap<>();
-        for (User user : previous) {
-            previousMap.put(user.getId(), user.getName());
-        }
         Map<Integer, String> currentMap = new HashMap<>();
         for (User user : current) {
             currentMap.put(user.getId(), user.getName());
