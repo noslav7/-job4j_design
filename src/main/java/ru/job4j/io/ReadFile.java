@@ -14,7 +14,8 @@ public class ReadFile {
             System.out.println(text);
             String[] lines = text.toString().split(System.lineSeparator());
             for (String line : lines) {
-                System.out.println(line);
+                if ((Integer.parseInt(line) % 2) == 0)
+                    System.out.println(line);
             }
         } catch (Exception e) {
             e.printStackTrace();
