@@ -1,7 +1,6 @@
 package ru.job4j.io;
 
 import java.io.FileOutputStream;
-import java.util.Arrays;
 
 public class ResultFile {
    public static void main(String[] args) {
