@@ -8,8 +8,7 @@ import java.util.stream.Collectors;
 public class LogFilter {
     public List<String> filter(String file) {
         List<String> matchList = null;
-        try (BufferedReader input = new BufferedReader(new FileReader("C:\\projects\\job4j_design\\src"
-                + "\\main\\java\\ru\\job4j\\io\\log.txt"))) {
+        try (BufferedReader input = new BufferedReader(new FileReader("..//data//" + file))) {
                 matchList = input.lines().filter(s -> s.contains("404 ")).collect(Collectors.toList());
         } catch (Exception e) {
          e.printStackTrace();
