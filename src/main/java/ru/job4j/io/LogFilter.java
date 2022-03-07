@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.lang.System.out;
+
 public class LogFilter {
     public List<String> filter(String file) {
         List<String> matchList = null;
@@ -17,9 +19,13 @@ public class LogFilter {
         return matchList;
     }
 
+    public static void save(List<String> log, String file) {
+        out.printf(file, log);
+    }
+
     public static void main(String[] args) {
         LogFilter logFilter = new LogFilter();
         List<String> log = logFilter.filter("log.txt");
-        System.out.println(log);
+        save(log, String.valueOf(log));
     }
 }
