@@ -20,7 +20,7 @@ public class LogFilter {
     }
 
     public static void save(List<String> log, String file) {
-        out.printf(file, log);
+        out.printf(file + "%n", log);
     }
 
     public static void main(String[] args) {
