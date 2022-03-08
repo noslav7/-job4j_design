@@ -16,7 +16,11 @@ public class Config {
 
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
-            String[] splitted = read.lines().toString().split("=");
+            String line;
+            String[] splitted = new String[0];
+            while ((line = read.readLine() )!= null) {
+                splitted = line.split("=");                
+            };
             Iterator<String> iterator = Arrays.stream(splitted).iterator();
             while (iterator.hasNext()) {
                 values.put(iterator.next(), iterator.next());
