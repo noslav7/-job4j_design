@@ -31,7 +31,7 @@ public class Config {
     }
 
     public String value(String key) {
-        throw new UnsupportedOperationException("Don't impl this method yet!");
+        throw new UnsupportedOperationException("Don't implement this method yet!");
     }
 
     @Override
