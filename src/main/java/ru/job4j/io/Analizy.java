@@ -1,16 +1,33 @@
 package ru.job4j.io;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Analizy {
-    /* public void unavailable(String source, String target) throws IOException {
+    public void unavailable(String source, String target) throws IOException {
+        boolean online = true;
+        List<String> strings = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader(source));
              PrintWriter out = new PrintWriter(new BufferedOutputStream(new FileOutputStream(target)))) {
-            in.lines()
-                    .flatMap(line -> Stream.of(line.split("/d00")))
-                    .filter(n -> !n.startsWith()).map(word -> word + " ")
-                    .forEach(target::print);
+             strings = in.lines()
+                    .flatMap(line -> Stream.of(line.split("\\s+")))
+                    .toList();
+        }
+        for (int i = 0; i < strings.size(); i = i + 2) {
+            if (strings.get(i).equals("200") || strings.get(i).equals("300")) {
+                if (!online) {
+                    System.out.println(strings.get(i + 1));
+                    online = true;
+                }
+            } else if (strings.get(i).equals("400") || strings.get(i).equals("500")) {
+                if (online) {
+                    System.out.println(strings.get(i + 1) + ";");
+                    online = false;
+                }
+            }
         }
     }
 
@@ -21,5 +38,5 @@ public class Analizy {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+    }
 }
