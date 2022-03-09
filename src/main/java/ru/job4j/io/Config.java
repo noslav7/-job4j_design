@@ -18,9 +18,9 @@ public class Config {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             String line;
             String[] splitted = new String[0];
-            while ((line = read.readLine() )!= null) {
+            while ((line = read.readLine()) != null) {
                 splitted = line.split("=");                
-            };
+            }
             Iterator<String> iterator = Arrays.stream(splitted).iterator();
             while (iterator.hasNext()) {
                 values.put(iterator.next(), iterator.next());
