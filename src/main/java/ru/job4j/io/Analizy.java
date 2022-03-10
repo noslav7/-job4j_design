@@ -15,17 +15,17 @@ public class Analizy {
              strings = in.lines()
                     .flatMap(line -> Stream.of(line.split("\\s+")))
                     .toList();
-        }
-        for (int i = 0; i < strings.size(); i = i + 2) {
-            if (strings.get(i).equals("200") || strings.get(i).equals("300")) {
-                if (!online) {
-                    System.out.println(strings.get(i + 1) + "/n");
-                    online = true;
-                }
-            } else if (strings.get(i).equals("400") || strings.get(i).equals("500")) {
-                if (online) {
-                    System.out.println(strings.get(i + 1) + ";");
-                    online = false;
+            for (int i = 0; i < strings.size(); i = i + 2) {
+                if (strings.get(i).equals("200") || strings.get(i).equals("300")) {
+                    if (!online) {
+                        out.append(strings.get(i + 1) + "/n");
+                        online = true;
+                    }
+                } else if (strings.get(i).equals("400") || strings.get(i).equals("500")) {
+                    if (online) {
+                        out.write(strings.get(i + 1) + ";");
+                        online = false;
+                    }
                 }
             }
         }
