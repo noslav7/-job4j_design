@@ -12,6 +12,6 @@ public class Dir {
             System.out.println(0);
             return;
         }
-        System.out.println(String.format("name : " + file.getName() + " size : %s", file.length()));
+        System.out.println(String.format("name :  %s      size : %s bytes", file.getName(), file.length()));
     }
 }
