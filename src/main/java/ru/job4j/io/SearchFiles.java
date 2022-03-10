@@ -18,13 +18,13 @@ public class SearchFiles implements FileVisitor<Paths> {
     public SearchFiles(Predicate<Path> condition) {
         this.condition = condition;
     }
-
+/*
     public List<Path> getPaths() {
         List<Path> arrayOfPaths = new ArrayList<>();
 
         return arrayOfPaths;
     }
-
+*/
     @Override
     public FileVisitResult preVisitDirectory(Paths dir, BasicFileAttributes attrs) throws IOException {
         return CONTINUE;
