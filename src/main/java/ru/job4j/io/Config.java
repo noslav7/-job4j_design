@@ -31,7 +31,7 @@ public class Config {
     }
 
     public String value(String key) {
-        throw new UnsupportedOperationException("Don't implement this method yet!");
+        return values.get(key);
     }
 
     @Override
@@ -46,6 +46,6 @@ public class Config {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Config("./data/pair_without_comment.properties"));
+        System.out.println(new Config("./data/app.properties"));
     }
 }
