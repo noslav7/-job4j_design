@@ -18,7 +18,7 @@ public class Analizy {
             for (int i = 0; i < strings.size(); i = i + 2) {
                 if (strings.get(i).equals("200") || strings.get(i).equals("300")) {
                     if (!online) {
-                        out.append(strings.get(i + 1) + "/n");
+                        out.write(strings.get(i + 1) + System.lineSeparator());
                         online = true;
                     }
                 } else if (strings.get(i).equals("400") || strings.get(i).equals("500")) {
