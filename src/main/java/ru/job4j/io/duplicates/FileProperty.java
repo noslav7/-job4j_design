@@ -49,7 +49,7 @@ public class FileProperty {
     @Override
     public String toString() {
         return new StringJoiner(", ", "Duplicates were found" + " ", " ")
-                .add("path: '" + "'")
+                .add("path: '" + name + "'")
                 .add(" file size " + size + " Kb")
                 .toString();
     }
