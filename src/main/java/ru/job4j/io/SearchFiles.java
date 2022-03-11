@@ -11,37 +11,38 @@ import java.util.List;
 import java.util.function.Predicate;
 import static java.nio.file.FileVisitResult.CONTINUE;
 
-public class SearchFiles implements FileVisitor<Paths> {
-
+public class SearchFiles implements FileVisitor<Path> {
+    List<Path> path = new ArrayList<>();;
     Predicate<Path> condition;
 
     public SearchFiles(Predicate<Path> condition) {
         this.condition = condition;
     }
-/*
+
     public List<Path> getPaths() {
-        List<Path> arrayOfPaths = new ArrayList<>();
-
-        return arrayOfPaths;
+        return path;
     }
-*/
+
     @Override
-    public FileVisitResult preVisitDirectory(Paths dir, BasicFileAttributes attrs) throws IOException {
+    public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
         return CONTINUE;
     }
 
     @Override
-    public FileVisitResult visitFile(Paths file, BasicFileAttributes attrs) throws IOException {
+    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+        if (condition.test(file)) {
+            path.add(file);
+        }
         return CONTINUE;
     }
 
     @Override
-    public FileVisitResult visitFileFailed(Paths file, IOException exc) throws IOException {
+    public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
         return CONTINUE;
     }
 
     @Override
-    public FileVisitResult postVisitDirectory(Paths dir, IOException exc) throws IOException {
+    public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
         return CONTINUE;
     }
 }
