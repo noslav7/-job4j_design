@@ -23,6 +23,7 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
         } else {
             names.put(fileProperty, file);
         }
+        System.out.println(file.toAbsolutePath());
         return FileVisitResult.CONTINUE;
     }
 
