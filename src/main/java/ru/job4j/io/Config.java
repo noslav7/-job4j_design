@@ -16,17 +16,16 @@ public class Config {
 
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
-            String line;
-            String[] splitted = new String[0];
-            while ((line = read.readLine()) != null) {
-                splitted = line.split("=");                
+            for (String line = read.readLine(); line != null; line = read.readLine()) {
+                if (!line.isEmpty() && !line.startsWith("#")) {
+                    String[] arrayLine = line.split("=");
+                    if (arrayLine.length == 2) {
+                        values.put(arrayLine[0], arrayLine[1]);
+                    }
+                }
             }
-            Iterator<String> iterator = Arrays.stream(splitted).iterator();
-            while (iterator.hasNext()) {
-                values.put(iterator.next(), iterator.next());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 
