@@ -18,7 +18,7 @@ public class LogFilter {
     public static void save(List<String> log, String file) throws FileNotFoundException {
         try (PrintStream out = new PrintStream(new FileOutputStream(file))) {
             for (String s : log) {
-                out.print(s);
+                out.println();
             }
         }
     }
@@ -26,6 +26,6 @@ public class LogFilter {
     public static void main(String[] args) throws FileNotFoundException {
         LogFilter logFilter = new LogFilter();
         List<String> log = logFilter.filter("log.txt");
-        save(log, "log.txt");
+        save(log, "newFile.txt");
     }
 }
