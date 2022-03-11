@@ -1,6 +1,7 @@
 package ru.job4j.io.duplicates;
 
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class FileProperty {
     private long size;
@@ -43,5 +44,13 @@ public class FileProperty {
     @Override
     public int hashCode() {
         return Objects.hash(size, name);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", "Duplicates were found" + " ", " ")
+                .add("path: '" + "'")
+                .add(" file size " + size + " Kb")
+                .toString();
     }
 }
