@@ -15,15 +15,15 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
     private final HashMap<FileProperty, Path> names = new HashMap<>();
     private final List<FileProperty> duplicates = new ArrayList<>();
 
-    @Override
-    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        FileProperty fileProperty = new FileProperty(attrs.size(), file.toFile().getName());
-        if (!names.containsKey(fileProperty)) {
-            duplicates.add(fileProperty);
-        } else {
-            names.put(fileProperty, file);
+    public FileVisitResult visitFile(List<Path> file, BasicFileAttributes attrs) throws IOException {
+        for (int i = 0; i < file.size(); i++) {
+            FileProperty fileProperty = new FileProperty(attrs.size(), file.get(i).toFile().getName());
+            if (!names.containsKey(fileProperty)) {
+                duplicates.add(fileProperty);
+            } else {
+                names.put(fileProperty, file.get(i));
+            }
         }
-        System.out.println(file.toAbsolutePath());
         return FileVisitResult.CONTINUE;
     }
 
