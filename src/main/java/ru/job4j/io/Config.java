@@ -17,8 +17,8 @@ public class Config {
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             for (String line = read.readLine(); line != null; line = read.readLine()) {
-                if (!line.isEmpty() && !line.startsWith("#")) {
-                    String[] arrayLine = line.split("=");
+                if (!line.isEmpty() || !line.startsWith("#")) {
+                    String[] arrayLine = line.split("=", 2);
                     if (arrayLine.length == 2) {
                         values.put(arrayLine[0], arrayLine[1]);
                     }
