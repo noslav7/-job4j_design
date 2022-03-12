@@ -18,7 +18,7 @@ public class LogFilter {
     public static void save(List<String> log, String file) throws FileNotFoundException {
         try (PrintStream out = new PrintStream(new FileOutputStream(file))) {
             for (String s : log) {
-                out.println();
+                out.println(s);
             }
         }
     }
