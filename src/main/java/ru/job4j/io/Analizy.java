@@ -3,7 +3,6 @@ package ru.job4j.io;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Analizy {
@@ -33,8 +32,7 @@ public class Analizy {
         }
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        PrintWriter out = new PrintWriter(new FileOutputStream(".\\data\\unavailable.csv"));
+    public static void main(String[] args) {
         Analizy.unavailable(".\\data\\unavailable.csv", ".\\data\\target.txt");
     }
 }
