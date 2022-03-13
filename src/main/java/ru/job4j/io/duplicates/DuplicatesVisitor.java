@@ -20,12 +20,12 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
             if (!names.containsKey(fileProperty)) {
                 duplicates.add(fileProperty);
             } else {
-                names.put(fileProperty, getFiles());
+     //           names.put(fileProperty, getFiles());
             }
         return FileVisitResult.CONTINUE;
     }
 
-    public List<Path> getFiles() {
+ /*   public List<Path> getFiles() {
         return ;
-    }
+    }*/
 }
