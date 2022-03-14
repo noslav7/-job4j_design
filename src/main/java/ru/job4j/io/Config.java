@@ -18,7 +18,7 @@ public class Config {
             for (String line = read.readLine(); line != null; line = read.readLine()) {
                 if (!line.isEmpty() && !line.startsWith("#")) {
                     String[] arrayLine = line.split("=", 2);
-                    if (arrayLine.length != 2 || arrayLine[0].isEmpty()) {
+                    if (arrayLine.length != 2 || arrayLine[0].isEmpty() || arrayLine[1].isEmpty()) {
                         throw new IllegalArgumentException(String.format("Invalid line: %s", line));
                     }
                     values.put(arrayLine[0], arrayLine[1]);
