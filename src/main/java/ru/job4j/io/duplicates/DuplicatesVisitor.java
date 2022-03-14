@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
     private final HashMap<FileProperty, List<Path>> names = new HashMap<>();
@@ -27,11 +26,15 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
         return FileVisitResult.CONTINUE;
     }
 
-    public List<FileProperty> getFiles() {
-        for (Map.Entry<FileProperty, List<Path>> key : names.entrySet()) {
-            FileProperty keyWord = key.getKey();
-            duplicates.add(keyWord);
+    public List <Path> getFiles() {
+        List <Path> paths = new ArrayList<>();
+        for (Map.Entry<FileProperty, List<Path>> cell : names.entrySet()) {
+            List <Path> path = cell.getValue();
+            if (path.size() > 1) {
+                paths.add(cell.getValue().get(0));
+                paths.add(cell.getValue().get(1));
+            }
         }
-        return duplicates;
+        return paths;
     }
 }
