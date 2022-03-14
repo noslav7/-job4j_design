@@ -26,10 +26,10 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
         return FileVisitResult.CONTINUE;
     }
 
-    public List <Path> getFiles() {
-        List <Path> paths = new ArrayList<>();
+    public List<Path> getFiles() {
+        List<Path> paths = new ArrayList<>();
         for (Map.Entry<FileProperty, List<Path>> cell : names.entrySet()) {
-            List <Path> path = cell.getValue();
+            List<Path> path = cell.getValue();
             if (path.size() > 1) {
                 paths.add(cell.getValue().get(0));
                 paths.add(cell.getValue().get(1));
