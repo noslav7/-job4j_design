@@ -8,6 +8,8 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
     private final HashMap<FileProperty, List<Path>> names = new HashMap<>();
@@ -26,6 +28,10 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
     }
 
     public List<FileProperty> getFiles() {
+        for (Map.Entry<FileProperty, List<Path>> key : names.entrySet()) {
+            FileProperty keyWord = key.getKey();
+            duplicates.add(keyWord);
+        }
         return duplicates;
     }
 }
