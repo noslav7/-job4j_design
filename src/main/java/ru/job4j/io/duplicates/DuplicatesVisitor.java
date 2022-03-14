@@ -31,8 +31,7 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
         for (Map.Entry<FileProperty, List<Path>> cell : names.entrySet()) {
             List<Path> path = cell.getValue();
             if (path.size() > 1) {
-                paths.add(cell.getValue().get(0));
-                paths.add(cell.getValue().get(1));
+                paths.addAll(path);
             }
         }
         return paths;
