@@ -22,8 +22,6 @@ public class ConfigTest {
         String path = "./data/pair_with_comments.properties";
         Config config = new Config(path);
         config.load();
-        assertTrue(config.toString().isEmpty());
-        assertTrue(config.toString().isEmpty());
         assertThat(config.value("text"), is("the file with the comment and empty strings"));
     }
 
