@@ -40,20 +40,24 @@ public class ConfigTest {
         config.load();
     }
 
- /*   @Test
+    @Test
     public void load() throws IOException {
         File source = folder.newFile(".\\data\\source.txt");
         File target = folder.newFile(".\\data\\target.txt");
         try (PrintWriter out = new PrintWriter(source)) {
-            out.println("quite small text");
-            out.println("java javarush job4j");
+            out.println("200 10:56:01");
+            out.println("500 10:57:01");
+            out.println("400 10:58:01");
+            out.println("500 10:59:01");
+            out.println("400 11:01:02");
+            out.println("200 11:02:02");
         }
         Config config = new Config(".\\data\\source.txt");
-        config.load(source.getAbsolutePath(), target.getAbsolutePath(), List.of("foolish", "php"));
+        config.load();
         StringBuilder rsl = new StringBuilder();
         try (BufferedReader in = new BufferedReader(new FileReader(target))) {
             in.lines().forEach(rsl::append);
         }
-        assertThat(rsl.toString(), is("hello dude java job4j "));
-    }*/
+        assertThat(rsl.toString(), is("10:57:01;11:02:02"));
+    }
 }
