@@ -13,8 +13,7 @@ import static org.junit.Assert.*;
 
 public class ConfigTest {
 
-    @Rule
-    public TemporaryFolder folder = new TemporaryFolder();
+
 
     @Test
     public void whenPairWithoutComment() {
@@ -38,26 +37,5 @@ public class ConfigTest {
         String path = "./data/template_violation.properties";
         Config config = new Config(path);
         config.load();
-    }
-
-    @Test
-    public void load() throws IOException {
-        File source = folder.newFile(".\\data\\source.txt");
-        File target = folder.newFile(".\\data\\target.txt");
-        try (PrintWriter out = new PrintWriter(source)) {
-            out.println("200 10:56:01");
-            out.println("500 10:57:01");
-            out.println("400 10:58:01");
-            out.println("500 10:59:01");
-            out.println("400 11:01:02");
-            out.println("200 11:02:02");
-        }
-        Config config = new Config(".\\data\\source.txt");
-        config.load();
-        StringBuilder rsl = new StringBuilder();
-        try (BufferedReader in = new BufferedReader(new FileReader(target))) {
-            in.lines().forEach(rsl::append);
-        }
-        assertThat(rsl.toString(), is("10:57:01;11:02:02"));
     }
 }
