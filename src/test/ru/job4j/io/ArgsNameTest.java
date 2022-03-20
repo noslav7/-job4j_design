@@ -10,31 +10,31 @@ import java.io.IOException;
 public class ArgsNameTest {
 
     @Test
-    public void whenGetFirst() throws IOException {
+    public void whenGetFirst() {
         ArgsName jvm = ArgsName.of(new String[] {"-Xmx=512", "-encoding=UTF-8"});
         assertThat(jvm.get("Xmx"), is("512"));
     }
 
     @Test
-    public void whenGetFirstReorder() throws IOException {
+    public void whenGetFirstReorder() {
         ArgsName jvm = ArgsName.of(new String[] {"-encoding=UTF-8", "-Xmx=512"});
         assertThat(jvm.get("Xmx"), is("512"));
     }
 
     @Test
-    public void whenMultipleEqualsSymbol() throws IOException {
+    public void whenMultipleEqualsSymbol() {
         ArgsName jvm = ArgsName.of(new String[] {"-request=?msg=Exit="});
         assertThat(jvm.get("request"), is("?msg=Exit="));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenGetNotExist() throws IOException {
+    public void whenGetNotExist() {
         ArgsName jvm = ArgsName.of(new String[] {});
         jvm.get("Xmx");
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenWrongSomeArgument() throws IOException {
+    public void whenWrongSomeArgument() {
         ArgsName jvm = ArgsName.of(new String[] {"-enconding=UTF-8", "-Xmx="});
     }
 }

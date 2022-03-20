@@ -15,9 +15,9 @@ public class ArgsName {
         return values.get(key);
     }
 
-    private void parse(String[] args) throws IOException {
+    private void parse(String[] args) {
         if (args.length == 0) {
-            throw new IOException("No arguments");
+            throw new IllegalArgumentException("args is empty");
         }
         for (String arg : args) {
             if (!validate(arg)) {
@@ -29,7 +29,7 @@ public class ArgsName {
         }
     }
 
-    public static ArgsName of(String[] args) throws IOException {
+    public static ArgsName of(String[] args) {
         ArgsName names = new ArgsName();
         names.parse(args);
         return names;
@@ -44,7 +44,7 @@ public class ArgsName {
         System.out.println(zip.get("out"));
     }
 
-    private static boolean validate(String arg) throws IOException {
+    private static boolean validate(String arg) {
         boolean valid = false;
         char[] charArg = arg.toCharArray();
         int count = 0;
