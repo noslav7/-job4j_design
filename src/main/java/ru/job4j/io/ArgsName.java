@@ -16,13 +16,10 @@ public class ArgsName {
     }
 
     private void parse(String[] args) throws IOException {
-        if (validate(args[0])) {
-            String[] splittedArgs1 = args[0].split("=", 2);
-            values.put(splittedArgs1[0], splittedArgs1[1]);
-        }
-        if (validate(args[1])) {
-            String[] splittedArgs2 = args[1].split("=", 2);
-            values.put(splittedArgs2[0], splittedArgs2[1]);
+        for (String arg : args) {
+           if (!validate(arg)) {
+               throw new IllegalArgumentException();
+           }
         }
     }
 
@@ -43,7 +40,7 @@ public class ArgsName {
         System.out.println(zip.get("out"));
     }
 
-    private boolean validate(String arg) throws IOException {
+    private static boolean validate(String arg) throws IOException {
         boolean valid = false;
             if (arg.startsWith("-") && arg.contains("=")
                     && !arg.startsWith("-=") && !arg.endsWith("=")) {
