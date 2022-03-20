@@ -16,10 +16,15 @@ public class ArgsName {
     }
 
     private void parse(String[] args) throws IOException {
+        if (args.length == 0) {
+            throw new IOException("No arguments");
+        }
         for (String arg : args) {
-           if (!validate(arg)) {
-               throw new IllegalArgumentException();
-           }
+            if (!validate(arg)) {
+                throw new IllegalArgumentException();
+            }
+            String[] splittedArg = arg.split("=", 2);
+            values.put(splittedArg[0], splittedArg[1]);
         }
     }
 
@@ -30,9 +35,7 @@ public class ArgsName {
     }
 
     public static void main(String[] args) throws IOException {
-        if (args.length == 0) {
-            throw new IOException("No arguments");
-        }
+
         ArgsName jvm = ArgsName.of(new String[]{"-Xmx=512", "-encoding=UTF-8"});
         System.out.println(jvm.get("Xmx"));
 
@@ -42,10 +45,10 @@ public class ArgsName {
 
     private static boolean validate(String arg) throws IOException {
         boolean valid = false;
-            if (arg.startsWith("-") && arg.contains("=")
-                    && !arg.startsWith("-=") && !arg.endsWith("=")) {
-                valid = true;
-            }
+        if (arg.startsWith("-") && arg.contains("=")
+                && !arg.startsWith("-=") && !arg.endsWith("=")) {
+            valid = true;
+        }
         return valid;
     }
 }
