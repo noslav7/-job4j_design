@@ -24,7 +24,8 @@ public class ArgsName {
                 throw new IllegalArgumentException();
             }
             String[] splittedArg = arg.split("=", 2);
-            values.put(splittedArg[0], splittedArg[1]);
+            StringBuilder sb = new StringBuilder(splittedArg[0]);
+            values.put(String.valueOf(sb.deleteCharAt(0)), splittedArg[1]);
         }
     }
 
@@ -45,8 +46,15 @@ public class ArgsName {
 
     private static boolean validate(String arg) throws IOException {
         boolean valid = false;
+        char[] charArg = arg.toCharArray();
+        int count = 0;
+        for (int i = 0; i < charArg.length; i++) {
+            if (charArg[i] == '=') {
+                count++;
+            }
+        }
         if (arg.startsWith("-") && arg.contains("=")
-                && !arg.startsWith("-=") && !arg.endsWith("=")) {
+                && !arg.startsWith("-=") && !(arg.endsWith("=") && (count == 1))) {
             valid = true;
         }
         return valid;
