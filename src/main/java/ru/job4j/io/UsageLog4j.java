@@ -16,8 +16,8 @@ public class UsageLog4j {
         double intelligence = 9;
         boolean wisdom = false;
         long distanceCovered = 10_000L;
-        LOG.debug("User info name : {}, age : {}, agility : {}, dexterity : {}, charisma : {}, intelligence : {}," +
-                         " wisdom : {}, distanceCovered : {}",
+        LOG.debug("User info name : {}, age : {}, agility : {}, dexterity : {}, charisma : {}, intelligence : {},"
+                        + " wisdom : {}, distanceCovered : {}",
                 name, age, agility, dexterity, charisma, intelligence, wisdom, distanceCovered);
     }
 }
