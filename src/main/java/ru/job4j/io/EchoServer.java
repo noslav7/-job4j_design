@@ -16,7 +16,7 @@ public class EchoServer {
                     out.write("Hello, dear friend.".getBytes());
                     String str = in.readLine();
                     if (str.contains("/?msg=Hello")) {
-                        System.out.println("Hello");;
+                        System.out.println("Hello");
                     } else if (str.contains("/?msg=Exit")) {
                         server.close();
                     } else  if (str.contains("/?msg=" + "\\w+")) {
