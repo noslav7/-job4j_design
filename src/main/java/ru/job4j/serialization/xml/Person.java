@@ -1,5 +1,6 @@
 package ru.job4j.serialization.xml;
 
+import java.io.IOException;
 import java.util.Arrays;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -54,8 +55,8 @@ public class Person {
             marshaller.marshal(person, writer);
             String result = writer.getBuffer().toString();
             System.out.println(result);
-        } catch (Exception e) {
-
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
