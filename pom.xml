@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<person sex="true" age="39">
+  <contact phone="890892-67339"/>
+  <statuses>
+    <status>Full-time employee</status>
+    <status>Busy</status>
+  </statuses>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"/>
   <modelVersion>4.0.0</modelVersion>
+
 
   <groupId>ru.job4j</groupId>
   <packaging>jar</packaging>
@@ -14,6 +21,9 @@
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
+
+
+  </person>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
