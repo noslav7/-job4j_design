@@ -1,6 +1,10 @@
 package ru.job4j.serialization.xml;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -8,6 +12,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.annotation.*;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.List;
 
 @XmlRootElement(name = "person")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -45,18 +50,43 @@ public class Person {
     }
 
     public static void main(String[] args) throws JAXBException {
+        /* JSONObject из json-строки строки */
+        JSONObject jsonContact = new JSONObject("{\"phone\":\"+7(924)111-111-11-11\"}");
+
+        /* JSONArray из ArrayList */
+        List<String> list = new ArrayList<>();
+        list.add("Student");
+        list.add("Free");
+        JSONArray jsonStatuses = new JSONArray(list);
+
+        /* JSONObject напрямую методом put */
         final Person person = new Person(false, 30, new Contact("11-111"), "Worker", "Married");
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("sex", person.isSex());
+        jsonObject.put("age", person.getAge());
+        jsonObject.put("contact", jsonContact);
+        jsonObject.put("statuses", jsonStatuses);
 
-        JAXBContext context = JAXBContext.newInstance(Person.class);
-        Marshaller marshaller = context.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        /* Выведем результат в консоль */
+        System.out.println(jsonObject.toString());
 
-        try (StringWriter writer = new StringWriter()) {
-            marshaller.marshal(person, writer);
-            String result = writer.getBuffer().toString();
-            System.out.println(result);
-        } catch (IOException e) {
-            e.printStackTrace();
+        /* Преобразуем объект person в json-строку */
+        System.out.println(new JSONObject(person).toString());
         }
+
+    public boolean isSex() {
+        return sex;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public String[] getStatuses() {
+        return statuses;
     }
 }
