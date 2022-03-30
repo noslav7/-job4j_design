@@ -35,19 +35,19 @@ public class Zip {
         }
     }
 
-    public static void main(String[] args) {
-        Zip zip = new Zip();
+    public static void main(String[] args) throws IOException {
+ /*     Zip zip = new Zip();
         zip.packSingleFile(
                 new File("./pom.xml"),
                 new File("./pom.zip")
-        );
-        ArgsName argsName = new ArgsName();
-        try (Writer arguments = new PrintWriter(String.valueOf(zip))) {
-            for (String arg : args) {
-                arguments.write(arg);
-            }
-        } catch (IOException fnf) {
-            System.out.println("File not found");
+        );   */
+        if (Search.validation(args)) {
+            ArgsName argsName = ArgsName.of(args);
+            Path dir = Path.of(argsName.get("d"));
+            String ex = argsName.get("e");
+            List<Path> list = Search.search(dir, p -> !p.toFile().getName().endsWith(ex));
+            File output = new File(argsName.get("о"));
+            packFiles(list, output);
         }
     }
 }
