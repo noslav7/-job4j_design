@@ -33,27 +33,11 @@ public class Zip {
     }
 
     public static void main(String[] args) throws IOException {
- /*     Zip zip = new Zip();
-        zip.packSingleFile(
-                new File("./pom.xml"),
-                new File("./pom.zip")
-        );   */
-        boolean valid = false;
-        for (String arg : args) {
-            if (ArgsName.validate(arg)) {
-                valid = true;
-            } else {
-                valid = false;
-                break;
-            }
-        }
-        if (valid) {
             ArgsName argsName = ArgsName.of(args);
             Path dir = Path.of(argsName.get("d"));
             String ex = argsName.get("e");
-            List<Path> list = Search.search(dir, p -> (p.toFile().getName().endsWith(ex)));
-            File output = new File(argsName.get("о"));
+            List<Path> list = Search.search(dir, p -> (!p.toFile().getName().endsWith(ex)));
+            File output = new File(argsName.get("o"));
             packFiles(list, output);
-        }
     }
 }
