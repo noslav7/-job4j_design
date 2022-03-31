@@ -44,7 +44,7 @@ public class ArgsName {
         System.out.println(zip.get("out"));
     }
 
-    private static boolean validate(String arg) {
+    public static boolean validate(String arg) {
         boolean valid = false;
         char[] charArg = arg.toCharArray();
         int count = 0;
