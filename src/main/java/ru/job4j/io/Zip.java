@@ -33,11 +33,23 @@ public class Zip {
     }
 
     public static void main(String[] args) throws IOException {
-            ArgsName argsName = ArgsName.of(args);
-            Path dir = Path.of(argsName.get("d"));
-            String ex = argsName.get("e");
-            List<Path> list = Search.search(dir, p -> (!p.toFile().getName().endsWith(ex)));
-            File output = new File(argsName.get("o"));
-            packFiles(list, output);
+        if (args.length != 3) {
+            throw new IllegalArgumentException("There should be three arguments");
+        }
+        ArgsName argsName = ArgsName.of(args);
+        Path dir = Path.of(argsName.get("d"));
+
+        if (dir.isAbsolute() && dir.toFile().isDirectory()) {
+            throw new FileNotFoundException(dir + ": the path is not absolute or it is not a directory");
+        }
+
+        String ex = argsName.get("e");
+        if (!ex.startsWith(".")) {
+            throw new FileNotFoundException((ex + " incorrect filename extension"));
+        }
+
+        List<Path> list = Search.search(dir, p -> (!p.toFile().getName().endsWith(ex)));
+        File output = new File(argsName.get("o"));
+        packFiles(list, output);
     }
 }
