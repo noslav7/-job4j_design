@@ -16,7 +16,7 @@ public class ConfigTest {
 
     @Test
     public void whenPairWithoutComment() {
-        String path = "./data/app.properties";
+        String path = "./src/data/app.properties";
         Config config = new Config(path);
         config.load();
         assertThat(config.value("name "), is(" Petr Arsentev"));
@@ -25,7 +25,7 @@ public class ConfigTest {
 
     @Test
     public void whenPairWithEmptyStrings() {
-        String path = "./data/pair_with_comments.properties";
+        String path = "./src/data/pair_with_comments.properties";
         Config config = new Config(path);
         config.load();
         assertThat(config.value("text"), is("the file with the comment and empty strings"));
@@ -33,7 +33,7 @@ public class ConfigTest {
 
     @Test (expected = IllegalArgumentException.class)
     public void whenDoesntConformTemplate() {
-        String path = "./data/template_violation.properties";
+        String path = "./src/data/template_violation.properties";
         Config config = new Config(path);
         config.load();
     }
