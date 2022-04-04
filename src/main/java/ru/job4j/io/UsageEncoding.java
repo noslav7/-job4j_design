@@ -3,12 +3,13 @@ package ru.job4j.io;
 import javax.imageio.IIOException;
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class UsageEncoding {
     public String readFile(String path) {
         StringBuilder builder = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader(path, Charset.forName("UTF-8")))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(path, StandardCharsets.UTF_8))) {
             br.lines().map(s -> s + System.lineSeparator()).forEach(builder::append);
         } catch (IOException e) {
             e.printStackTrace();
@@ -34,9 +35,7 @@ public class UsageEncoding {
                 "Новая строка 4",
                 "Новая строка 5"
         );
-        for (String str : strings) {
-            encoding.writeDataInFile(path, strings);
-        }
+        encoding.writeDataInFile(path, strings);
         String s = encoding.readFile(path);
         System.out.println("Данные из файла: ");
         System.out.println(s);
