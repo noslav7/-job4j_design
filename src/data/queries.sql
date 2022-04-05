@@ -1,4 +1,4 @@
-create table junior (
+create table junior(
     id serial primary key,
 	name varchar (255),
 	duration integer,
