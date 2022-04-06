@@ -1,11 +1,11 @@
 create table tutors(
 	id serial primary key,
-	name varchar (255)
+	spn varchar (255)
 );
 
-create table modules (
+create table modules(
 	id serial primary key,
-	name varchar (255)
+	subject varchar (255)
 );
 
 create table tutors_modules (
@@ -14,17 +14,17 @@ create table tutors_modules (
 	modules_id int references modules(id)
 );
 
-insert into tutors(name) values ('Orekhova S.V.')
+insert into tutors(spn) values ('Orekhova S.V.')
 
-insert into tutors(name) values ('Shitikov S.A.')
+insert into tutors(spn) values ('Shitikov S.A.')
 
-insert into tutors(name) values ('Kopnov V.A.')
+insert into tutors(spn) values ('Kopnov V.A.')
 
-insert into modules(name) values('Economics')
+insert into modules(subject) values('Economics')
 
-insert into modules(name) values('Mathematics')
+insert into modules(subject) values('Mathematics')
 
-insert into modules(name) values('Quality_management')
+insert into modules(subject) values('Quality_management')
 
 insert into tutors_modules(tutors_id, modules_id) values (1, 1)
 
