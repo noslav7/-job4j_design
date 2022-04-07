@@ -20,10 +20,6 @@ insert into citizens(name, address_id) values ('Vasya', 3);
 insert into citizens(name) values ('Vitaliy');
 insert into citizens(name) values ('Irina');
 
-select * from citizens
-join address ad
-on citizens.address_id = ad.id;
-
 select cz.name, ad.street, ad.house
 from citizens as cz
 join address as ad
