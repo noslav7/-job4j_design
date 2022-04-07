@@ -1,12 +1,12 @@
+create table role (
+    id serial primary key,
+    role text
+);
+
 create table users(
     id serial primary key,
     customer text,
     role_id int references role(id)
-);
-
-create table role (
-    id serial primary key,
-    role text
 );
 
 create table rules(
@@ -18,6 +18,16 @@ create table role_rules(
      id serial primary key,
      role_id int references role(id),
      rules_id int references rules(id)
+);
+
+create table category(
+     id serial primary key,
+     class varchar(255)
+);
+
+create table state(
+    id serial primary key,
+    characteristic varchar(255)
 );
 
 create table item(
@@ -39,20 +49,4 @@ create table attachs(
     attachment text,
     item_id int references item(id)
 );
-
-create table category(
-     id serial primary key,
-     class varchar(255)
-);
-
-create table state(
-    id serial primary key,
-    characteristic varchar(255)
-);
-
-alter table item
-add  category_id int references category(id);
-
-alter table item
-add state_id int references state(id);
 
