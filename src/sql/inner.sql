@@ -23,19 +23,17 @@ insert into citizens(name) values ('Irina');
 select cz.name, ad.street, ad.house
 from citizens as cz
 join address as ad
-on cz.address_id = ad.id;
+on cz.address_id = ad.id
+where street = 'Soyuznaya';
 
 select cz.name, ad.street, ad.house
 from citizens as cz
 join address as ad
-on cz.address_id = 1;
+on cz.address_id = ad.id
+where street = 'Serova';
 
 select cz.name, ad.street, ad.house
 from citizens as cz
 join address as ad
-on cz.address_id = 2;
-
-select cz.name, ad.street, ad.house
-from citizens as cz
-join address as ad
-on cz.address_id = 3;
+on cz.address_id = ad.id
+where house = 57;
