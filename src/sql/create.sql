@@ -1,12 +1,12 @@
-create table users (
+create table users(
     id serial primary key,
-    customer text
+    customer text,
+    role_id int references role(id)
 );
 
 create table role (
     id serial primary key,
-    role text,
-    users_id int references users(id)
+    role text
 );
 
 create table rules(
@@ -23,7 +23,9 @@ create table role_rules(
 create table item(
     id serial primary key,
     object varchar(255),
-    users_id int references users(id)
+    users_id int references users(id),
+    category_id int references category(id),
+    state_id int references state(id)
 );
 
 create table comments(
