@@ -26,5 +26,11 @@ insert into devices_people(device_id, people_id) values (5, 3);
 
 select avg(price) from devices;
 
-
+SELECT people.name, avg(devices.price)
+FROM people
+JOIN devices_people
+  ON people.id = devices_people.people_id,
+     devices.id = devices_people.device_id
+JOIN devices
+  ON devices.id = devices_people.device_id;
 

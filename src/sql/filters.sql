@@ -25,30 +25,49 @@ insert into product(name, expired_date, price, type_id) values ('Свинина'
 insert into product(name, expired_date, price, type_id) values ('Голландский', '2022-05-15', 650, 4);
 insert into product(name, expired_date, price, type_id) values ('Российский', '2022-05-15', 500, 4);
 
-select name from product where type_id = 4;
+SELECT p.name
+FROM product as p
+JOIN type as t
+ON p.type_id = t.id
+WHERE t.name = 'СЫР';
 
 select name from product where name like '%мороженое%';
 
 select name from product where expired_date < now();
 
-select max(price) from product;
+SELECT p.name
+FROM product as p
+JOIN type as t
+ON p.type_id = t.id
+GROUP BY product.name
+HAVING product.price WHERE max(product.price);
 
-select name from product where price = 650;
+SELECT
+t.name,
+COUNT(p.name)
+FROM product AS p
+JOIN type AS t
+ON p.type_id = t.id
+GROUP BY t.name;
 
-SELECT COUNT(*)
-FROM product
-WHERE type_id = 1;
+SELECT
+p.name
+FROM product AS p
+JOIN type AS t
+ON p.type_id = t.id
+WHERE t.name = 'СЫР'
+OR t.name = 'МОЛОКО';
 
-SELECT COUNT(*)
-FROM product
-WHERE type_id = 2;
+SELECT
+t.name,
+COUNT(p.name)
+FROM product AS p
+JOIN type AS t
+ON p.type_id = t.id
+GROUP BY t.name
+HAVING COUNT(p.name) < 10;
 
-SELECT COUNT(*)
-FROM product
-WHERE type_id = 3;
-
-SELECT COUNT(*)
-FROM product
-WHERE type_id = 4;
-
-select name from product where type_id = 4;
+select p.name, t.name
+from product as p
+join type as t
+on p.type_id = t.id;
