@@ -51,4 +51,4 @@ SELECT COUNT(*)
 FROM product
 WHERE type_id = 4;
 
-select name from product;
+select name from product where type_id = 4;
