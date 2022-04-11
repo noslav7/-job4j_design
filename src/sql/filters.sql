@@ -35,12 +35,7 @@ select name from product where name like '%мороженое%';
 
 select name from product where expired_date < now();
 
-SELECT p.name
-FROM product as p
-JOIN type as t
-ON p.type_id = t.id
-GROUP BY product.name
-HAVING product.price WHERE max(product.price);
+select name from product where price = (select max(price) from product);
 
 SELECT
 t.name,
