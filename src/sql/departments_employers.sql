@@ -72,4 +72,16 @@ insert into teens(name, gender) values ('Nataliya', 'female');
 insert into teens(name, gender) values ('Nadezhda', 'female');
 insert into teens(name, gender) values ('Elena', 'female');
 
-?
+SELECT name, gender
+INTO teens2
+FROM teens
+WHERE gender = 'male';
+
+SELECT name, gender
+INTO teens3
+FROM teens
+WHERE gender = 'female';
+
+SELECT teens2.name, teens3.name
+FROM teens2
+CROSS JOIN teens3;
