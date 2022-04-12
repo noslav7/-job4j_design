@@ -18,7 +18,7 @@ public class ConnectionDemo {
         String url = null;
         String login = null;
         String password = null;
-        File file = new File(".//app.properties");
+        File file = new File("./app.properties");
         try (BufferedReader read = new BufferedReader(new FileReader(file))) {
             for (String line = read.readLine(); line != null; line = read.readLine()) {
                 if (line.isEmpty()) {
