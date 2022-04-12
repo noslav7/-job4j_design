@@ -53,7 +53,8 @@ on e.department_id = d.id;
 select *
 from employees e
 right join departments d
-on e.department_id = d.id;
+on e.department_id = d.id
+where e.name is not null;;
 
 create table teens(
     id serial primary key,
