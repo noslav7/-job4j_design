@@ -14,7 +14,7 @@ public class ConnectionDemo {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         Config config = new Config("./app.properties");
         config.load();
-        String driver_class = config.value("hibernate.connection.driver_class");
+        String driverClass = config.value("hibernate.connection.driver_class");
         String url = config.value("hibernate.connection.url");
         String username = config.value("hibernate.connection.username");
         String password = config.value("hibernate.connection.password");
