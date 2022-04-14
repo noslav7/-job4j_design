@@ -12,11 +12,9 @@ import ru.job4j.io.Config;
 
 public class ConnectionDemo {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        File file = new File("./app.properties");
         Config config = new Config("./app.properties");
-        Class.forName("org.postgresql.Driver");
-        Map<String, String> values = new HashMap<String, String>();
         config.load();
+        String driver_class = config.value("hibernate.connection.driver_class");
         String url = config.value("hibernate.connection.url");
         String username = config.value("hibernate.connection.username");
         String password = config.value("hibernate.connection.password");
