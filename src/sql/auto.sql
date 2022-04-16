@@ -1,19 +1,19 @@
-create table transmission(
+ create table transmission(
     id serial primary key,
     type varchar(255)
 );
 
-create table carcase(
+ create table carcase(
     id serial primary key,
     type varchar(255)
 );
 
-create table engine(
+ create table engine(
     id serial primary key,
     type varchar(255)
 );
 
-create table car(
+ create table car(
     id serial primary key,
     name varchar(255),
     engine_id int references engine(id),
