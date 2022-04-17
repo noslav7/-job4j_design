@@ -34,21 +34,27 @@ insert into car(name, engine_id, carcase_id, transmission_id) values ('Skoda_Rap
 
 SELECT c.name, e.type, cc.type, t.type
 FROM car c
-CROSS JOIN engine e
-CROSS JOIN carcase cc
-CROSS JOIN transmission t
-where c.engine_id = e.id
-and c.carcase_id = cc.id
-and c.transmission_id = t.id;
+LEFT JOIN engine e
+on c.engine_id = e.id
+LEFT JOIN carcase cc
+on c.carcase_id = cc.id
+LEFT JOIN transmission t
+on c.transmission_id = t.id;
 
 SELECT type
-FROM transmission
-WHERE transmission.id NOT IN (SELECT transmission_id FROM car);
+FROM transmission t
+LEFT JOIN car c
+on c.transmission_id = t.id
+WHERE t.id NOT IN (SELECT transmission_id FROM car);
 
 SELECT type
-FROM engine
-WHERE engine.id NOT IN (SELECT engine_id FROM car);
+FROM engine e
+LEFT JOIN car c
+on c.engine_id = e.id
+WHERE e.id NOT IN (SELECT engine_id FROM car);
 
 SELECT type
-FROM carcase
-WHERE carcase.id NOT IN (SELECT carcase_id FROM car);
+FROM carcase cc
+LEFT JOIN car c
+on c.carcase_id = cc.id
+WHERE cc.id NOT IN (SELECT carcase_id FROM car);
