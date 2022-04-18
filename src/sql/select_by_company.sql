@@ -19,14 +19,25 @@ values (1, 'Oracle'), (2, 'Microsoft'), (3, 'Google'), (4, 'Meta'), (5, 'Epam'),
 insert into person(id, name, company_id)
 values (1, 'Michael', 1), (2, 'Andrew', 2), (3, 'James', 3), (4, 'Koushik', 2), (5, 'Sergey', 5), (6, 'Alice', 4);
 
-select p.name
+select p.name, c.name
 from person p
 left join company c
 on p.company_id = c.id
 where c.id != 5;
 
-select p.name, c.name
-from person p
-left join company c
-on p.company_id = c.id
-where c.id is not null;
+SELECT
+  COUNT(*) AS number,
+  c.name
+FROM
+  person p
+  join
+  company c
+  on p.company_id = c.id
+GROUP BY
+  c.name;
+
+  SELECT
+  COUNT(company_id)
+  from person p
+  GROUP BY p.company_id DESC NULLS LAST
+  LIMIT 1;
