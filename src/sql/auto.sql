@@ -45,16 +45,16 @@ SELECT type
 FROM transmission t
 LEFT JOIN car c
 on c.transmission_id = t.id
-WHERE t.id NOT IN (SELECT transmission_id FROM car);
+where c.name is null;
 
 SELECT type
 FROM engine e
 LEFT JOIN car c
 on c.engine_id = e.id
-WHERE e.id NOT IN (SELECT engine_id FROM car);
+where c.name is null;
 
 SELECT type
 FROM carcase cc
 LEFT JOIN car c
 on c.carcase_id = cc.id
-WHERE cc.id NOT IN (SELECT carcase_id FROM car);
+where c.name is null;
