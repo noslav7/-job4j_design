@@ -26,7 +26,7 @@ on p.company_id = c.id
 where c.id != 5;
 
 select
-  count(*) as number,
+  count(*),
   c.name
 from
   person p
@@ -38,5 +38,6 @@ group by
 HAVING COUNT(*) = (SELECT
   COUNT(company_id)
   from person p
-  order by COUNT(company_id) DESC
+  group BY company_id
+  order by count(company_id) desc
   LIMIT 1);
