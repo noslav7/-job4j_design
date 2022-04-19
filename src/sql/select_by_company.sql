@@ -1,11 +1,11 @@
-CREATE TABLE company
+create TABLE company
 (
     id integer NOT NULL,
     name character varying,
     CONSTRAINT company_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE person
+create TABLE person
 (
     id integer NOT NULL,
     name character varying,
@@ -25,19 +25,18 @@ left join company c
 on p.company_id = c.id
 where c.id != 5;
 
-SELECT
-  COUNT(*) AS number,
+select
+  count(*) as number,
   c.name
-FROM
+from
   person p
   join
   company c
   on p.company_id = c.id
-GROUP BY
-  c.name;
-
-  SELECT
+group by
+  c.name
+HAVING COUNT(*) = (SELECT
   COUNT(company_id)
   from person p
-  GROUP BY p.company_id DESC NULLS LAST
-  LIMIT 1;
+  order by COUNT(company_id) DESC
+  LIMIT 1);
