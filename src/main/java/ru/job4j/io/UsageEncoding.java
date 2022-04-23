@@ -1,10 +1,7 @@
 package ru.job4j.io;
 
-import javax.imageio.IIOException;
 import java.io.*;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.util.Collections;
 import java.util.List;
 
 public class UsageEncoding {
