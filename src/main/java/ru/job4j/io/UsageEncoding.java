@@ -4,6 +4,7 @@ import javax.imageio.IIOException;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.List;
 
 public class UsageEncoding {
@@ -17,9 +18,10 @@ public class UsageEncoding {
         return builder.toString();
     }
 
-    public void writeDataInFile(String path, List<String> data) {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(path, Charset.forName("WINDOWS-1251"), true))) {
-            data.forEach(pw::println);
+    public void writeDataInFile(String path, String data) {
+        try (PrintWriter pw = new PrintWriter(
+                new FileWriter(path, Charset.forName("WINDOWS-1251"), true))) {
+            pw.println(data);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -35,7 +37,9 @@ public class UsageEncoding {
                 "Новая строка 4",
                 "Новая строка 5"
         );
-        encoding.writeDataInFile(path, strings);
+        for (String str : strings) {
+            encoding.writeDataInFile(path, str);
+        }
         String s = encoding.readFile(path);
         System.out.println("Данные из файла: ");
         System.out.println(s);
