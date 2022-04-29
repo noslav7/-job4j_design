@@ -1,20 +1,12 @@
 package ru.job4j.gc;
 
 public class User {
-    private int age;
-    private short height;
+    private int id;
+    private String name;
 
-    public User(int age) {
-        this.age = age;
-    }
-
-    public User(short height) {
-        this.height = height;
-    }
-
-    public User(int age, short height) {
-        this.age = age;
-        this.height = height;
+    public User(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public User() {
@@ -22,23 +14,23 @@ public class User {
 
     @Override
     protected void finalize() throws Throwable {
-        System.out.printf("Removed %d %s%n", age, height);
+        System.out.printf("Removed %d %s%n", id, name);
     }
 
-    public int getAge() {
-        return age;
+    public int getId() {
+        return id;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public short getHeight() {
-        return height;
+    public String getName() {
+        return name;
     }
 
-    public void setHeight(short height) {
-        this.height = height;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public static void main(String[] args) {

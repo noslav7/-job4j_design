@@ -1,0 +1,19 @@
+new User(10, "Squirrel");
+16 bytes (heading size in 64-bit OS) + 4 bytes (int) + 4 bytes (alignment padding) = 24 bytes;
+16 bytes + (4 bytes * 8 characters) = 48 bytes (char[] array heading size) + (2 * 8 = 16 bytes (chars)) = 64 bytes;
+total object size in memory: 64 + 24 = 88 bytes.
+
+new User();
+16 bytes (heading size in 64-bit OS) = 16 bytes;
+total object size in memory: 16 bytes.
+
+User user = new User(100, "Bear");
+16 bytes (heading size in 64-bit OS) + 4 bytes (int) + 4 bytes (alignment padding) = 24 bytes;
+8 bytes (reference size);
+16 bytes + (4 bytes * 4 characters) = 32 bytes (char[] array heading size) + (2 * 4 = 8 bytes (chars)) = 40 bytes;
+total object size in memory: 24 + 40 + 8 = 72 bytes.
+
+In Edit Configurations I set to maximum heap size to minimal value - 16 Mb.
+According to my calculation, after putting objects creation and a reference creation into cycle
+106_500 times should result in the Heap overflow and an automatic launch of GC.
+
