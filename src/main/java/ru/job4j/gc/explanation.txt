@@ -13,7 +13,6 @@ User user = new User(100, "Bear");
 16 bytes + (4 bytes * 4 characters) = 32 bytes (char[] array heading size) + (2 * 4 = 8 bytes (chars)) = 40 bytes;
 total object size in memory: 24 + 40 + 8 = 72 bytes.
 
-In Edit Configurations I set to maximum heap size to minimal value - 16 Mb.
-According to my calculation, after putting objects creation and a reference creation into cycle
-106_500 times should result in the Heap overflow and an automatic launch of GC.
-
+В Edit Configurations я установил максимальный размер heap на минимальное значение — 16 МБ (наименьшее возможное значение):
+"-Xmx16M". По моему расчету, введение в цикл for создания объектов и создания ссылки
+106500 раз должно привести к переполнению heap и автоматическому запуску Garbage Collector.
