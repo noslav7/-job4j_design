@@ -13,20 +13,15 @@ public class Emulator {
         String command = emulator.getTypeOfCommand();
         File file = new File(command);
         File text = new File("./src/data/poem.txt");
+        File inputFile = new File("./src/data/inputText.txt");
         if (file.isDirectory()) {
                 new DirFileCache(text.getPath()).load(text.getPath());
-        } else if (command.equals("load")) {
-                new Input(text.getPath()).load(text.getPath());
-        } else if (command.equals("retrieve")) {
-                new Output(text.getPath()).load(text.getPath());
+        } else if (command.equals("inputText.txt")) {
+                new Input().load(inputFile.getPath());
+        } else if (command.equals("text.txt")) {
+            System.out.println(new Output().load(text.getPath()));
         }
     }
-
-    private void setCachingDir(String command) {
-
-
-    }
-
     public String getTypeOfCommand() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         return reader.readLine();

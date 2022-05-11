@@ -5,11 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class Output extends AbstractCache<String, String> {
-    private final String sourceFile;
-
-    public Output(String sourceFile) {
-        this.sourceFile = sourceFile;
-    }
 
     @Override
     protected String load(String source) {

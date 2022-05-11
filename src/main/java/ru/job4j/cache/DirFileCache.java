@@ -14,10 +14,6 @@ public class DirFileCache extends AbstractCache<String, String> {
 
     @Override
     protected String load(String cachingDir) {
-        try {
-            return Files.readString(Paths.get(cachingDir));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return cachingDir;
     }
 }
