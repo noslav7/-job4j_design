@@ -15,7 +15,7 @@ public class Emulator {
         File text = new File("./src/data/poem.txt");
         File inputFile = new File("./src/data/inputText.txt");
         if (file.isDirectory()) {
-                new DirFileCache(text.getPath()).load(text.getPath());
+                new DirFileCache(file.getPath());
         } else if (command.equals("inputText.txt")) {
                 new Input().load(inputFile.getPath());
         } else if (command.equals("text.txt")) {

@@ -1,9 +1,5 @@
 package ru.job4j.cache;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 public class DirFileCache extends AbstractCache<String, String> {
 
     private final String cachingDir;
@@ -14,6 +10,6 @@ public class DirFileCache extends AbstractCache<String, String> {
 
     @Override
     protected String load(String cachingDir) {
-        return cachingDir;
+        return this.cachingDir;
     }
 }
