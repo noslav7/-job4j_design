@@ -9,18 +9,23 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class MaxMinTest {
-/*
+
     @Test
-    public void max() {
-        MaxMin max = new MaxMin();
-        List<Integer> intList = new ArrayList<>(Arrays.asList(1, 7, 10, 5, 3));
-        IntMaxComparator comparator = new IntMaxComparator();
-        int maximumValue = max.max(intList, comparator);
-        int expected = 10;
-        assertEquals(expected, maximumValue);
+    public void whenIntegersMax() {
+
     }
 
     @Test
-    public void min() {
-    }*/
+    public void whenStringLengthMin() {
+
+    }
+
+    public void whenIntegersMaxValueTest() {
+
+    }
+
+    @Test
+    public void whenStringLengthMaxValueTest() {
+
+    }
 }
