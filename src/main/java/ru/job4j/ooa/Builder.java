@@ -23,7 +23,8 @@ public enum Builder {
                 return "PRS";
             case ANY:
                 return "Any";
+            default:
+                return "Unknown builder";
         }
-        return "Builder{}";
     }
 }

@@ -26,7 +26,8 @@ public enum Wood {
             return "Alder";
             case SITKA:
             return "Sitka";
+            default:
+            return "Just wood";
         }
-        return "Wood{}";
     }
 }

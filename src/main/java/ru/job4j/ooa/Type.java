@@ -10,7 +10,8 @@ public enum Type {
                 return "Acoustic";
             case ELECTRIC:
                 return "Electric";
+            default:
+                return "Conventional";
         }
-        return "Type{}";
     }
 }

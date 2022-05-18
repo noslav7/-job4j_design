@@ -33,22 +33,27 @@ public class Inventory {
 
     public List search(Guitar searchGuitar) {
         List matchingGuitars = new LinkedList();
-        for (Iterator i = guitars.iterator(); i.hasNext(); ) {
+        for (Iterator i = guitars.iterator(); i.hasNext();) {
             Guitar guitar = (Guitar) i.next();
             /* Серийный номер игнорируется, так как он уникален */
             /* Цена игнорируется, так как она уникальна */
-            if (searchGuitar.getBuilder() != guitar.getBuilder())
+            if (searchGuitar.getBuilder() != guitar.getBuilder()) {
                 continue;
+            }
             String model = searchGuitar.getModel();
-            if ((model != null) && (!model.equals("")) &&
-                    (!model.equals(guitar.getModel())))
+            if ((model != null) && (!model.equals(""))
+                    && (!model.equals(guitar.getModel()))) {
                 continue;
-            if (searchGuitar.getType() != guitar.getType())
+            }
+            if (searchGuitar.getType() != guitar.getType()) {
                 continue;
-            if (searchGuitar.getBackWood() != guitar.getBackWood())
+            }
+            if (searchGuitar.getBackWood() != guitar.getBackWood()) {
                 continue;
-            if (searchGuitar.getTopWood() != guitar.getTopWood())
+            }
+            if (searchGuitar.getTopWood() != guitar.getTopWood()) {
                 continue;
+            }
             matchingGuitars.add(guitar);
         }
         return matchingGuitars;
