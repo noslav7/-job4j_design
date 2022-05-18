@@ -15,12 +15,9 @@ public class MaxMin {
     public <T> T maxValue(List<T> value, Comparator<T> comparator) {
         T result = value.get(0);
         for (int i = 0; i < value.size() - 1; i++) {
-            if (comparator.compare(value.get(i), value.get(i + 1)) > 0) {
+            if (comparator.compare(result, value.get(i)) < 0) {
                 result = value.get(i);
             }
-        }
-        if (comparator.compare(result, value.get(value.size() - 1)) < 0) {
-            result = value.get(value.size() - 1);
         }
         return result;
     }
