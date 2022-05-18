@@ -1,5 +1,6 @@
 package ru.job4j.tdd;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -29,4 +30,36 @@ public class CinemaTest {
         assertThat(sessions, is(Arrays.asList(new Session3D())));
     }
 
+    @Test
+    public void whenPutToAccount() {
+        Account account = new AccountCinema();
+
+    }
+
+    @Test
+    public void whenWithdrawFromAccount() {
+        Account account = new AccountCinema();
+    }
+
+    @Test
+    public void whenEnjoySession() {
+        Cinema cinema = new Cinema3D();
+        Session3D session3D = new Session3D();
+    }
+
+    @Test
+    public void obtainTicketFromAnywhere() {
+        Ticket3D ticket3D = new Ticket3D();
+    }
+
+    @Test
+    public void whenJustUseTicket() {
+        Ticket3D ticket3D = new Ticket3D();
+        Session3D session3D = new Session3D();
+    }
+
+    @Test
+    public void sellTicket() {
+        Ticket3D ticket3D = new Ticket3D();
+    }
 }
