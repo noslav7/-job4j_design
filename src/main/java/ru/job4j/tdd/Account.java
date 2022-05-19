@@ -1,7 +1,7 @@
 package ru.job4j.tdd;
 
 public interface Account {
-    void put();
+    int put(int sum);
 
-    void withdraw();
+    int withdraw(int sum);
 }

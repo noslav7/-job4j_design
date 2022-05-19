@@ -5,7 +5,7 @@ import ru.job4j.list.List;
 public class Session3D implements Session {
 
     @Override
-    public void enjoy() {
+    public void enjoy(Ticket ticket) {
 
     }
 }

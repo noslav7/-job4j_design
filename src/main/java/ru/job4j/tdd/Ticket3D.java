@@ -3,18 +3,19 @@ package ru.job4j.tdd;
 import ru.job4j.list.List;
 
 public class Ticket3D implements Ticket {
+    private int ticketPossessed;
     @Override
-    public List<Ticket> obtain() {
-        return null;
+    public int obtain() {
+        return ticketPossessed++;
     }
 
     @Override
-    public Ticket use() {
-        return null;
+    public int use() {
+        return ticketPossessed--;
     }
 
     @Override
-    public Ticket sell() {
-        return null;
+    public int sell() {
+        return ticketPossessed--;
     }
 }
