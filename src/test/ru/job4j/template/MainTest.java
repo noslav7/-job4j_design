@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 
 import static org.junit.Assert.*;
 
-public class MainTest {
+public class  MainTest {
 
     @Ignore
     @Test(expected = NoSuchElementException.class)
