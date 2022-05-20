@@ -37,7 +37,8 @@ public class  MainTest {
         Main main = new Main();
         String template = "I am a ${name}. Who are ${subject}";
         HashMap<String, String> map = new HashMap<String, String>();
-        map.put("Petr Arsentev", "you");
+        map.put("name", "Petr Arsentev");
+        map.put("subject", "you");
         String result = main.produce(template, map);
         String expected = "I am a Petr Arsentev. Who are you";
         assertEquals(expected, result);
