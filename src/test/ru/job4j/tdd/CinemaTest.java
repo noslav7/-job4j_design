@@ -15,7 +15,7 @@ public class CinemaTest {
     @Ignore
     @Test
     public void whenBuy() {
-        Account account = new AccountCinema(100);
+        Account account = new AccountCinema();
         Cinema cinema = new Cinema3D();
         Calendar date = Calendar.getInstance();
         date.set(2020, 10, 10, 23, 00);
@@ -33,63 +33,32 @@ public class CinemaTest {
     }
 
     @Ignore
-    @Test
-    public void whenPutToAccount() {
-        Account account = new AccountCinema(0);
-        int balance = account.put(100);
-        int expected = 100;
-        assertEquals(expected, balance);
+    @Test(expected = IllegalArgumentException.class)
+    public void whenBuyTicketInvalidSeat() {
+    Account account = new AccountCinema();
+    Cinema3D cinema3D = new Cinema3D();
+    Calendar date = Calendar.getInstance();
+    date.set(2020, 10, 10, 23, 00);
+    cinema3D.buy(account, -1, 1000, date);
     }
 
     @Ignore
-    @Test
-    public void whenWithdrawFromAccount() {
-        Account account = new AccountCinema(100);
-        int balance = account.withdraw(50);
-        int expected = 50;
-        assertEquals(expected, balance);
+    @Test(expected = IllegalArgumentException.class)
+    public void whenBuyTicketInvalidDate() {
+    Account account = new AccountCinema();
+    Cinema3D cinema3D = new Cinema3D();
+    Calendar date = Calendar.getInstance();
+    date.set(2020, Calendar.FEBRUARY, 30, 21, 30);
     }
 
     @Ignore
-    @Test
-    public void whenEnjoySession() {
-        Ticket3D ticket3D = new Ticket3D();
-        Session session = new Session3D();
-        session.enjoy(ticket3D);
-        int ticket = ticket3D.use();
-        int expected = 0;
-        assertEquals(expected, ticket);
-    }
-
-    @Ignore
-    @Test
-    public void obtainTicketFromAnywhere() {
-        Ticket3D ticket3D = new Ticket3D();
-        int ticketsWere = 2;
-        int ticketsNow = ticket3D.obtain();
-        int expected = 3;
-        assertEquals(expected, ticketsNow);
-    }
-
-    @Ignore
-    @Test
-    public void whenJustUseTicket() {
-        Ticket3D ticket3D = new Ticket3D();
-        Session3D session3D = new Session3D();
-        int ticketsWere = 1;
-        int ticketsNow = ticket3D.use();
-        session3D.enjoy(ticket3D);
-        int expected = 0;
-        assertEquals(expected, ticketsNow);
-    }
-
-    @Ignore
-    @Test
-    public void sellTicket() {
-        Ticket3D ticket3D = new Ticket3D();
-        int ticketsWere = 2;
-        int ticketsNow = ticket3D.sell();
-        int expected = 1;
-        assertEquals(expected, ticketsNow);
+    @Test(expected = IllegalArgumentException.class)
+    public void whenBuyTicketSeatAlreadyPurchased() {
+    Account account = new AccountCinema();
+    Cinema3D cinema3D = new Cinema3D();
+    Calendar date = Calendar.getInstance();
+    date.set(2020, 10, 10, 23, 00);
+    cinema3D.buy(account, 4, 10, date);
+    cinema3D.buy(account, 4, 10, date);
     }
 }
