@@ -3,11 +3,11 @@ package ru.job4j.ood.srp.violations;
 public class Transaction {
 
     // Method to Buy, implemented in Transaction class
-    private void Buy(String stock, int quantity, float price){
+    private void buy(String stock, int quantity, float price) {
         // Buy stock functinality implemented here
     }
     // Method to Sell, implemented in Transaction class
-    private void Sell(String stock, int quantity, float price){
+    private void sell(String stock, int quantity, float price) {
         // Sell stock functionality implemented here
     }
 }
