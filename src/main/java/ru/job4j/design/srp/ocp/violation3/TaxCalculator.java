@@ -19,7 +19,7 @@ public class TaxCalculator {
                 tax = 0.17 * individual.getSalary();
                 break;
             default:
-                //Handler exception condition
+                /* Handler exception condition */
                 System.out.println("Unknow choice");
                 tax = -1;
                 break;
