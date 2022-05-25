@@ -1,8 +1,8 @@
-package ru.job4j.design.srp.ocp;
+package ru.job4j.ood.ocp;
 
-import ru.job4j.design.srp.Employee;
-import ru.job4j.design.srp.Report;
-import ru.job4j.design.srp.Store;
+import ru.job4j.ood.srp.Employee;
+import ru.job4j.ood.srp.Report;
+import ru.job4j.ood.srp.Store;
 
 import java.util.function.Predicate;
 

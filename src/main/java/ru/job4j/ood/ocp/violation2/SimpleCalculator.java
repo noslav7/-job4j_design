@@ -1,4 +1,4 @@
-package ru.job4j.design.srp.ocp.violation2;
+package ru.job4j.ood.ocp.violation2;
 
 import java.security.InvalidParameterException;
 

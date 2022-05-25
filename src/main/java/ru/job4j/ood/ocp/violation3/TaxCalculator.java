@@ -1,4 +1,4 @@
-package ru.job4j.design.srp.ocp.violation3;
+package ru.job4j.ood.ocp.violation3;
 
 public class TaxCalculator {
     /*
