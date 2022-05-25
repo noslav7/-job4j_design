@@ -2,12 +2,12 @@ package ru.job4j.design.srp.ocp.violation1;
 
 public class AreaCalculator {
 
-    public Double calculateRectangleArea(Rectangle rectangle){
+    public Double calculateRectangleArea(Rectangle rectangle) {
 
         return rectangle.length * rectangle.width;
     }
 
-    public Double calculateCircleArea(Circle circle){
+    public Double calculateCircleArea(Circle circle) {
 
         return (22 / 7) * circle.radius * circle.radius;
 
