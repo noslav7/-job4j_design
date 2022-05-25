@@ -1,4 +1,4 @@
-package ru.job4j.ood.ocp;
+package ru.job4j.ood.srp;
 
 import ru.job4j.ood.srp.Employee;
 import ru.job4j.ood.srp.Report;
