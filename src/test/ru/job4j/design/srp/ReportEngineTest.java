@@ -14,7 +14,7 @@ import java.util.Calendar;
 public class ReportEngineTest {
 
     @Test
-    public void  whenReportsInHTML() {
+    public void whenReportsInHTML() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker1 = new Employee("Ivan", now, now, 100);
