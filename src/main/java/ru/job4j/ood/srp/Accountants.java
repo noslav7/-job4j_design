@@ -1,10 +1,9 @@
-package ru.job4j.design.srp;
+package ru.job4j.ood.srp;
 
 import java.util.function.Predicate;
 
 public class Accountants implements Report {
     private Store store;
-
     public Accountants(Store store) {
         this.store = store;
     }

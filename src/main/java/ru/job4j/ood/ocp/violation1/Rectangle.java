@@ -1,4 +1,4 @@
-package ru.job4j.design.srp.ocp.violation1;
+package ru.job4j.ood.ocp.violation1;
 
 public class Rectangle {
 

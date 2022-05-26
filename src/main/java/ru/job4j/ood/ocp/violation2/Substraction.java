@@ -1,4 +1,4 @@
-package ru.job4j.design.srp.ocp.violation2;
+package ru.job4j.ood.ocp.violation2;
 
 public class Substraction implements IOperation {
     private double firstOperand;

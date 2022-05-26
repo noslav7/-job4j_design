@@ -3,6 +3,10 @@ package ru.job4j.design.srp;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 import org.junit.Test;
+import ru.job4j.ood.srp.Employee;
+import ru.job4j.ood.srp.MemStore;
+import ru.job4j.ood.srp.Report;
+import ru.job4j.ood.srp.ReportEngine;
 
 import java.io.File;
 import java.util.Calendar;
