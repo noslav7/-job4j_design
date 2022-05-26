@@ -1,4 +1,4 @@
-package ru.job4j.ood.lsp.violation1;
+package ru.job4j.ood.lsp.violation3;
 
 public class Square extends Rectangle {
 
