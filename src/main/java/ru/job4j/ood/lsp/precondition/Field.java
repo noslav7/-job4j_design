@@ -15,7 +15,7 @@ public class Field {
     }
 
     public void supply(Field field) {
-        if (wheat < 1500 || grain < 2000 || rice < 900 ) {
+        if (wheat < 1500 || grain < 2000 || rice < 900) {
             throw new IllegalArgumentException("Not enough cargo to arrange delivery!");
         }
         if (!destination.equalsIgnoreCase("Moscow")) {
