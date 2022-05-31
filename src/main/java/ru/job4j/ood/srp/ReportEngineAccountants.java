@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 public class ReportEngineAccountants implements Report {
 
     private Store store;
-
+    public static final double workDays = 20.0;
     public ReportEngineAccountants(Store store) {
         this.store = store;
     }
@@ -14,7 +14,6 @@ public class ReportEngineAccountants implements Report {
     public String generate(Predicate<Employee> filter) {
         StringBuilder text = new StringBuilder();
         text.append("Name; Hired; Fired; Wages;");
-        final double workDays = 20.0;
         for (Employee employee : store.findBy(filter)) {
             text.append(System.lineSeparator())
                     .append(employee.getName()).append(";")

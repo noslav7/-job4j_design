@@ -1,9 +1,8 @@
 package ru.job4j.ood.srp;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public class ReportEngineHRs implements Report {
 
@@ -22,6 +21,7 @@ public class ReportEngineHRs implements Report {
                     .append(employee.getName()).append(";")
                     .append(employee.getSalary()).append(";");
         }
+        Collections.sort(text, Comparator.comparing(Employee::getSalary).reversed());
         return text.toString();
     }
 }

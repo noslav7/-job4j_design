@@ -2,6 +2,8 @@ package ru.job4j.design.srp;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static ru.job4j.ood.srp.ReportEngineAccountants.workDays;
+
 import org.junit.Test;
 import ru.job4j.ood.srp.*;
 
@@ -49,7 +51,6 @@ public class ReportEngineTest {
         Employee worker = new Employee("Ivan", now, now,100);
         store.add(worker);
         Report engine = new ReportEngineAccountants(store);
-        final double workDays = 20.0;
         StringBuilder expect = new StringBuilder()
                 .append("Name; Hired; Fired; Wages;")
                 .append(System.lineSeparator())
