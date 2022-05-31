@@ -14,12 +14,13 @@ public class ReportEngineAccountants implements Report {
     public String generate(Predicate<Employee> filter) {
         StringBuilder text = new StringBuilder();
         text.append("Name; Hired; Fired; Wages;");
+        final double workDays = 20.0;
         for (Employee employee : store.findBy(filter)) {
             text.append(System.lineSeparator())
                     .append(employee.getName()).append(";")
                     .append(employee.getHired()).append(";")
                     .append(employee.getFired()).append(";")
-                    .append(employee.getSalary()).append(";")
+                    .append((employee.getSalary()) / workDays).append(";")
                     .append(System.lineSeparator());
         }
         return text.toString();

@@ -20,8 +20,7 @@ public class ReportEngineHRs implements Report {
         for (Employee employee : store.findBy(filter)) {
                 text.append(System.lineSeparator())
                     .append(employee.getName()).append(";")
-                    .append(employee.getSalary()).append(";")
-                    .append(System.lineSeparator());
+                    .append(employee.getSalary()).append(";");
         }
         return text.toString();
     }

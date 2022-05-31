@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class MemStore implements Store, HRStore {
+public class MemStore implements Store {
     private final List<Employee> employees = new ArrayList<>();
 
     public void add(Employee em) {
@@ -16,11 +16,6 @@ public class MemStore implements Store, HRStore {
 
     @Override
     public List<Employee> findBy(Predicate<Employee> filter) {
-        return employees.stream().filter(filter).collect(Collectors.toList());
-    }
-
-    @Override
-    public List<Employee> findByHR(Predicate<Employee> filter) {
-        return employees.stream().filter(filter).sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+        return employees.stream().filter(filter).sorted(Comparator.comparing(Employee::getSalary).reversed()).collect(Collectors.toList());
     }
 }

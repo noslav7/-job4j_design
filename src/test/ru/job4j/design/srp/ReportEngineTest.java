@@ -13,17 +13,31 @@ public class ReportEngineTest {
     public void whenReportsInHTML() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
-        Employee worker1 = new Employee("Ivan", now, now, 100);
-        store.add(worker1);
+        Employee worker = new Employee("Ivan", now, now, 100);
+        store.add(worker);
         Report engine = new ReportEngineProgrammers(store);
         StringBuilder expect = new StringBuilder()
-                .append("Name; Hired; Fired; Salary;")
-                .append("\r<br/>")
-                .append(worker1.getName()).append(";")
-                .append(worker1.getHired()).append(";")
-                .append(worker1.getFired()).append(";")
-                .append(worker1.getSalary()).append(";")
-                .append("\r<br/>");
+                .append("<!DOCTYPE HTML")
+                .append(System.lineSeparator())
+                .append("<html>").append(System.lineSeparator())
+                .append("<head>").append(System.lineSeparator())
+                .append("meta http-equiv=\"Content Type\" content=\"text/html; charset=UTF-8")
+                .append(System.lineSeparator())
+                .append("<title>Таблица</title>").append(System.lineSeparator())
+                .append("</head>").append(System.lineSeparator())
+                .append("<body>").append(System.lineSeparator())
+                .append("<table>").append(System.lineSeparator())
+                .append("<tr>").append(System.lineSeparator())
+                .append("<th>Name</th><th>Hired</th><th>Fired</th><th>Salary</th>")
+                .append(System.lineSeparator())
+                .append("<tr>").append(worker.getName()).append("</td")
+                .append("<tr>").append(worker.getHired()).append("</td")
+                .append("<tr>").append(worker.getFired()).append("</td")
+                .append("<tr>").append(worker.getSalary()).append("</td")
+                .append("</tr>").append(System.lineSeparator())
+                .append("</table>").append(System.lineSeparator())
+                .append("</body>").append(System.lineSeparator())
+                .append("</html>").append(System.lineSeparator());
 
         assertThat(engine.generate(em -> true), is(expect.toString()));
     }
@@ -32,16 +46,17 @@ public class ReportEngineTest {
     public void whenChangedPaymentsType() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
-        Employee worker = new Employee("Ivan", now, now, 100);
+        Employee worker = new Employee("Ivan", now, now,100);
         store.add(worker);
         Report engine = new ReportEngineAccountants(store);
+        final double workDays = 20.0;
         StringBuilder expect = new StringBuilder()
                 .append("Name; Hired; Fired; Wages;")
                 .append(System.lineSeparator())
                 .append(worker.getName()).append(";")
                 .append(worker.getHired()).append(";")
                 .append(worker.getFired()).append(";")
-                .append(worker.getSalary()).append(";")
+                .append(worker.getSalary() / workDays).append(";")
                 .append(System.lineSeparator());
         assertThat(engine.generate(em -> true), is(expect.toString()));
     }
@@ -67,8 +82,7 @@ public class ReportEngineTest {
                 .append(worker1.getSalary()).append(";")
                 .append(System.lineSeparator())
                 .append(worker2.getName()).append(";")
-                .append(worker2.getSalary()).append(";")
-                .append(System.lineSeparator());
+                .append(worker2.getSalary()).append(";");
 
         assertThat(engine.generate(em -> true), is(expect.toString()));
     }
