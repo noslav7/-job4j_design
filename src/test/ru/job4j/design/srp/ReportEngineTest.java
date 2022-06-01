@@ -2,7 +2,7 @@ package ru.job4j.design.srp;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static ru.job4j.ood.srp.ReportEngineAccountants.workDays;
+import static ru.job4j.ood.srp.ReportEngineAccountants.WORK_DAYS;
 
 import org.junit.Test;
 import ru.job4j.ood.srp.*;
@@ -57,7 +57,7 @@ public class ReportEngineTest {
                 .append(worker.getName()).append(";")
                 .append(worker.getHired()).append(";")
                 .append(worker.getFired()).append(";")
-                .append(worker.getSalary() / workDays).append(";")
+                .append(worker.getSalary() / WORK_DAYS).append(";")
                 .append(System.lineSeparator());
         assertThat(engine.generate(em -> true), is(expect.toString()));
     }

@@ -16,12 +16,13 @@ public class ReportEngineHRs implements Report {
     public String generate(Predicate<Employee> filter) {
         StringBuilder text = new StringBuilder();
         text.append("Name; Salary;");
-        for (Employee employee : store.findBy(filter)) {
+        List<Employee> employees = store.findBy(filter);
+        employees.sort(Comparator.comparingDouble(Employee::getSalary).reversed());
+        for (Employee employee : employees) {
                 text.append(System.lineSeparator())
                     .append(employee.getName()).append(";")
                     .append(employee.getSalary()).append(";");
         }
-        Collections.sort(text, Comparator.comparing(Employee::getSalary).reversed());
         return text.toString();
     }
 }
