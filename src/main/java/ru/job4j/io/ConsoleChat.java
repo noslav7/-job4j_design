@@ -5,6 +5,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class ConsoleChat {
     private static final String OUT = "закончить";
@@ -14,31 +15,38 @@ public class ConsoleChat {
     private final String botAnswers;
     private static List<String> logText = new ArrayList<>();
 
-    public ConsoleChat(String path, String botAnswers) {
+
+    public ConsoleChat(String path, String botAnswers) throws IOException {
         this.path = path;
         this.botAnswers = botAnswers;
     }
 
     public void run() throws IOException {
-        String typing;
-        String answerString;
+        String typing = anyWordOrPhrase();
+        List<String> answerString = readPhrases();
+        Random random = new Random();
 
-        while (!(typing = anyWordOrPhrase()).equals(STOP)) {
-            System.out.println(answerString = readPhrases().get(0));
+        while (!typing.equals(STOP)) {
+            System.out.println(answerString.get(random.nextInt(answerString.size())));
             logText.add(typing);
-            logText.add(answerString);
+            logText.add(answerString.get(random.nextInt(answerString.size())));
+            typing = anyWordOrPhrase();
         }
         logText.add(STOP);
 
-        while (!(typing = anyWordOrPhrase()).equals(CONTINUE)) {
+        typing = anyWordOrPhrase();
+        while (!typing.equals(CONTINUE)) {
             logText.add(typing);
+            typing = anyWordOrPhrase();
         }
         logText.add(CONTINUE);
 
-        while (!(typing = anyWordOrPhrase()).equals(OUT)) {
-            System.out.println(answerString = readPhrases().get(0));
+        typing = anyWordOrPhrase();
+        while (!typing.equals(OUT)) {
+            System.out.println(answerString.get(random.nextInt(answerString.size())));
             logText.add(typing);
-            logText.add(answerString);
+            logText.add(answerString.get(random.nextInt(answerString.size())));
+            typing = anyWordOrPhrase();
         }
         logText.add(OUT);
     }
@@ -50,7 +58,6 @@ public class ConsoleChat {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Collections.shuffle(answers);
         return answers;
     }
 
