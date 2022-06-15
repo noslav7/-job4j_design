@@ -43,6 +43,7 @@ public class TableEditor implements AutoCloseable {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        connection.close();
     }
 
     public void dropTable(String tableName) throws SQLException {
@@ -59,6 +60,7 @@ public class TableEditor implements AutoCloseable {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        connection.close();
     }
 
     public void addColumn(String tableName, String columnName, String type) throws SQLException {
@@ -76,6 +78,7 @@ public class TableEditor implements AutoCloseable {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        connection.close();
     }
 
     public void dropColumn(String tableName, String columnName) throws SQLException {
@@ -93,6 +96,7 @@ public class TableEditor implements AutoCloseable {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        connection.close();
     }
 
     public void renameColumn(String tableName, String columnName, String newColumnName) throws SQLException {
@@ -110,6 +114,7 @@ public class TableEditor implements AutoCloseable {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        connection.close();
     }
 
 
