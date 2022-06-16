@@ -1,5 +1,7 @@
 package ru.job4j.jdbc;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -19,16 +21,27 @@ public class TableEditor implements AutoCloseable {
         initConnection();
     }
 
-    private Connection initConnection() throws SQLException, ClassNotFoundException {
-        Class.forName("org.postgresql.Driver");
-        String url = "jdbc:postgresql://localhost:5432/idea_db";
-        String login = "postgres";
-        String password = "password";
-        return DriverManager.getConnection(url, login, password);
+    public static void main(String[] args) throws Exception {
+        Properties config = new Properties();
+        try (InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("app.properties")) {
+                config.load(in);
+        }
+        try (TableEditor tableEditor = new TableEditor(config)) {
+            tableEditor.initConnection();
+            tableEditor.createTable("empty_table");
+            tableEditor.addColumn("empty_table", "color", "varchar");
+            tableEditor.renameColumn("empty_table", "color", "shade");
+            tableEditor.dropColumn("empty_table", "shade");
+            tableEditor.dropTable("empty_table");
+        }
+    }
+
+    private Connection initConnection() throws SQLException {
+        return DriverManager.getConnection( properties.getProperty("url"), properties.getProperty("login"),
+                properties.getProperty("password"));
     }
 
     public void createTable(String tableName) throws SQLException {
-        try (Connection connection = initConnection()) {
             try (Statement statement = connection.createStatement()) {
                 String sql = String.format(
                         "create table if not exists empty_table(%s, %s);",
@@ -40,32 +53,22 @@ public class TableEditor implements AutoCloseable {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        connection.close();
     }
 
     public void dropTable(String tableName) throws SQLException {
-        try (Connection connection = initConnection()) {
             try (Statement statement = connection.createStatement()) {
                 String sql = String.format(
                         "drop table (%s)", tableName
                 );
                 statement.execute(sql);
-                System.out.println(getTableScheme(connection, "empty_table"));
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
         connection.close();
     }
 
     public void addColumn(String tableName, String columnName, String type) throws SQLException {
-        try (Connection connection = initConnection()) {
-            try (Statement statement = connection.createStatement()) {
+       try (Statement statement = connection.createStatement()) {
                 String sql = String.format(
                         "alter table (%s)\nadd (%s, %s)",
                         tableName, columnName, type
@@ -74,16 +77,16 @@ public class TableEditor implements AutoCloseable {
                 System.out.println(getTableScheme(connection, "empty_table"));
             } catch (Exception e) {
                 throw new RuntimeException(e);
-            }
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+       }
         connection.close();
     }
 
+    public Statement statementCreation() throws SQLException {
+        return connection.createStatement();
+    }
+
     public void dropColumn(String tableName, String columnName) throws SQLException {
-        try (Connection connection = initConnection()) {
-            try (Statement statement = connection.createStatement()) {
+        try (Statement statement = connection.createStatement()) {
                 String sql = String.format(
                         "alter table (%s)\ndrop column (%s)",
                         tableName, columnName
@@ -93,15 +96,11 @@ public class TableEditor implements AutoCloseable {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
         connection.close();
     }
 
     public void renameColumn(String tableName, String columnName, String newColumnName) throws SQLException {
-        try (Connection connection = initConnection()) {
-            try (Statement statement = connection.createStatement()) {
+        try (Statement statement = connection.createStatement()) {
                 String sql = String.format(
                         "alter table (%s)\nrename column (%s) to (%s)",
                         tableName, columnName, newColumnName
@@ -111,11 +110,8 @@ public class TableEditor implements AutoCloseable {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
         connection.close();
-    }
+        }
 
 
     public static String getTableScheme(Connection connection, String tableName) throws Exception {
