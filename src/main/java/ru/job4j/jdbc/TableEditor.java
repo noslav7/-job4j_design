@@ -1,6 +1,5 @@
 package ru.job4j.jdbc;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +8,8 @@ import java.sql.Statement;
 import java.util.Properties;
 import java.util.StringJoiner;
 
-import static java.sql.DriverManager.getConnection;
+import static ru.job4j.io.UsageLog4j.LOG;
+
 
 public class TableEditor implements AutoCloseable {
     private Connection connection;
@@ -27,7 +27,6 @@ public class TableEditor implements AutoCloseable {
                 config.load(in);
         }
         try (TableEditor tableEditor = new TableEditor(config)) {
-            tableEditor.initConnection();
             tableEditor.createTable("empty_table");
             tableEditor.addColumn("empty_table", "color", "varchar");
             tableEditor.renameColumn("empty_table", "color", "shade");
@@ -41,18 +40,22 @@ public class TableEditor implements AutoCloseable {
                 properties.getProperty("password"));
     }
 
-    public void createTable(String tableName) throws SQLException {
-            try (Statement statement = connection.createStatement()) {
+    public void connectionStatementCreate(String query) throws SQLException {
+        try (Statement statement = connection.createStatement()) {
+            statement.execute(query);
+        } catch (Exception e) {
+            LOG.error("Sql exception, e");
+        }
+    }
+
+    public void createTable(String tableName) throws Exception {
                 String sql = String.format(
                         "create table if not exists empty_table(%s, %s);",
                         "id serial primary key",
                         "name varchar(255)"
                 );
-                statement.execute(sql);
+                connectionStatementCreate(sql);
                 System.out.println(getTableScheme(connection, "empty_table"));
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
     }
 
     public void dropTable(String tableName) throws SQLException {
@@ -64,7 +67,6 @@ public class TableEditor implements AutoCloseable {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        connection.close();
     }
 
     public void addColumn(String tableName, String columnName, String type) throws SQLException {
@@ -78,7 +80,6 @@ public class TableEditor implements AutoCloseable {
             } catch (Exception e) {
                 throw new RuntimeException(e);
        }
-        connection.close();
     }
 
     public Statement statementCreation() throws SQLException {
@@ -96,7 +97,6 @@ public class TableEditor implements AutoCloseable {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        connection.close();
     }
 
     public void renameColumn(String tableName, String columnName, String newColumnName) throws SQLException {
@@ -110,7 +110,6 @@ public class TableEditor implements AutoCloseable {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        connection.close();
         }
 
 
