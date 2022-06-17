@@ -67,7 +67,7 @@ public class TableEditor implements AutoCloseable {
                 String sql = String.format(
                         "drop table %s", tableName
                 );
-                statement.execute(sql);
+                connectionStatementCreate(sql);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -79,7 +79,7 @@ public class TableEditor implements AutoCloseable {
                         "alter table %s add %s %s",
                         tableName, columnName, type
                 );
-                statement.execute(sql);
+                connectionStatementCreate(sql);
                 System.out.println(getTableScheme(connection, "empty_table"));
             } catch (Exception e) {
                 throw new RuntimeException(e);
@@ -92,7 +92,7 @@ public class TableEditor implements AutoCloseable {
                         "alter table %s drop column %s",
                         tableName, columnName
                 );
-                statement.execute(sql);
+                connectionStatementCreate(sql);
                 System.out.println(getTableScheme(connection, "empty_table"));
             } catch (Exception e) {
                 throw new RuntimeException(e);
@@ -105,7 +105,7 @@ public class TableEditor implements AutoCloseable {
                         "alter table %s rename column %s to %s",
                         tableName, columnName, newColumnName
                 );
-                statement.execute(sql);
+                connectionStatementCreate(sql);
                 System.out.println(getTableScheme(connection, "empty_table"));
             } catch (Exception e) {
                 throw new RuntimeException(e);
