@@ -35,9 +35,9 @@ public class TableEditor implements AutoCloseable {
         }
     }
 
-    private Connection initConnection() throws SQLException {
-        return DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("login"),
-                properties.getProperty("password"));
+    private void initConnection() throws SQLException {
+        connection = DriverManager.getConnection(properties.getProperty("url"),
+                properties.getProperty("login"), properties.getProperty("password"));
     }
 
     public void connectionStatementCreate(String query) throws SQLException {
