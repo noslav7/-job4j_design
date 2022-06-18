@@ -40,16 +40,12 @@ public class TableEditor implements AutoCloseable {
                 properties.getProperty("login"), properties.getProperty("password"));
     }
 
-    public void connectionStatementCreate(String query) throws SQLException {
+    public void statementCreation(String query) {
         try (Statement statement = connection.createStatement()) {
             statement.execute(query);
         } catch (Exception e) {
-            LOG.error("Sql exception, e");
+            LOG.error("Sql exception", e);
         }
-    }
-
-    public Statement statementCreation() throws SQLException {
-        return connection.createStatement();
     }
 
     public void createTable(String tableName) throws Exception {
@@ -58,7 +54,7 @@ public class TableEditor implements AutoCloseable {
                                 + "(id serial primary key, name varchar(255))",
                         tableName
                 );
-                connectionStatementCreate(sql);
+                statementCreation(sql);
                 System.out.println(getTableScheme(connection, "empty_table"));
     }
 
@@ -67,7 +63,7 @@ public class TableEditor implements AutoCloseable {
                 String sql = String.format(
                         "drop table %s", tableName
                 );
-                connectionStatementCreate(sql);
+                statementCreation(sql);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -79,7 +75,7 @@ public class TableEditor implements AutoCloseable {
                         "alter table %s add %s %s",
                         tableName, columnName, type
                 );
-                connectionStatementCreate(sql);
+                statementCreation(sql);
                 System.out.println(getTableScheme(connection, "empty_table"));
             } catch (Exception e) {
                 throw new RuntimeException(e);
@@ -92,7 +88,7 @@ public class TableEditor implements AutoCloseable {
                         "alter table %s drop column %s",
                         tableName, columnName
                 );
-                connectionStatementCreate(sql);
+                statementCreation(sql);
                 System.out.println(getTableScheme(connection, "empty_table"));
             } catch (Exception e) {
                 throw new RuntimeException(e);
@@ -105,7 +101,7 @@ public class TableEditor implements AutoCloseable {
                         "alter table %s rename column %s to %s",
                         tableName, columnName, newColumnName
                 );
-                connectionStatementCreate(sql);
+                statementCreation(sql);
                 System.out.println(getTableScheme(connection, "empty_table"));
             } catch (Exception e) {
                 throw new RuntimeException(e);
