@@ -58,7 +58,7 @@ public class TableEditor implements AutoCloseable {
                 System.out.println(getTableScheme(connection, "empty_table"));
     }
 
-    public void dropTable(String tableName) throws SQLException {
+    public void dropTable(String tableName) {
             try (Statement statement = connection.createStatement()) {
                 String sql = String.format(
                         "drop table %s", tableName
@@ -69,7 +69,7 @@ public class TableEditor implements AutoCloseable {
             }
     }
 
-    public void addColumn(String tableName, String columnName, String type) throws SQLException {
+    public void addColumn(String tableName, String columnName, String type) {
        try (Statement statement = connection.createStatement()) {
                 String sql = String.format(
                         "alter table %s add %s %s",
@@ -82,7 +82,7 @@ public class TableEditor implements AutoCloseable {
        }
     }
 
-    public void dropColumn(String tableName, String columnName) throws SQLException {
+    public void dropColumn(String tableName, String columnName) {
         try (Statement statement = connection.createStatement()) {
                 String sql = String.format(
                         "alter table %s drop column %s",
@@ -95,7 +95,7 @@ public class TableEditor implements AutoCloseable {
             }
     }
 
-    public void renameColumn(String tableName, String columnName, String newColumnName) throws SQLException {
+    public void renameColumn(String tableName, String columnName, String newColumnName) {
         try (Statement statement = connection.createStatement()) {
                 String sql = String.format(
                         "alter table %s rename column %s to %s",
