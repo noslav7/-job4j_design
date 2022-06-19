@@ -5,4 +5,4 @@ CREATE TABLE products(
     count int
 );
 
-SELECT * FROM products;
+SELECT * FROM products
