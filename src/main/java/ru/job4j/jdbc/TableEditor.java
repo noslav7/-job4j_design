@@ -59,53 +59,37 @@ public class TableEditor implements AutoCloseable {
     }
 
     public void dropTable(String tableName) {
-            try (Statement statement = connection.createStatement()) {
                 String sql = String.format(
                         "drop table %s", tableName
                 );
                 statementCreation(sql);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
             }
-    }
 
-    public void addColumn(String tableName, String columnName, String type) {
-       try (Statement statement = connection.createStatement()) {
+    public void addColumn(String tableName, String columnName, String type) throws Exception {
                 String sql = String.format(
                         "alter table %s add %s %s",
                         tableName, columnName, type
                 );
                 statementCreation(sql);
                 System.out.println(getTableScheme(connection, "empty_table"));
-            } catch (Exception e) {
-                throw new RuntimeException(e);
        }
-    }
 
-    public void dropColumn(String tableName, String columnName) {
-        try (Statement statement = connection.createStatement()) {
+    public void dropColumn(String tableName, String columnName) throws Exception {
                 String sql = String.format(
                         "alter table %s drop column %s",
                         tableName, columnName
                 );
                 statementCreation(sql);
                 System.out.println(getTableScheme(connection, "empty_table"));
-            } catch (Exception e) {
-                throw new RuntimeException(e);
             }
-    }
 
-    public void renameColumn(String tableName, String columnName, String newColumnName) {
-        try (Statement statement = connection.createStatement()) {
+    public void renameColumn(String tableName, String columnName, String newColumnName) throws Exception {
                 String sql = String.format(
                         "alter table %s rename column %s to %s",
                         tableName, columnName, newColumnName
                 );
                 statementCreation(sql);
                 System.out.println(getTableScheme(connection, "empty_table"));
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
         }
 
 
