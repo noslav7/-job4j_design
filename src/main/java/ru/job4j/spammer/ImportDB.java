@@ -23,17 +23,13 @@ public class ImportDB {
 
     public List<User> load() throws IOException {
         List<User> users = new ArrayList<>();
-        String rows;
+        String[] rows = new String[2];
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
-            rows = rd.lines().toString();
+            rd.lines().map(e -> e.split(";")).forEach(new User(e[0], e[1]));
         }
-        String[] splitInfo = rows.split(";");
-        for (int i = 0; i < splitInfo.length; i++) {
-            if (i % 2 == 0) {
-            users.add(new User(splitInfo[i], null));
-            } else {
-                users.get(i - 1).email = splitInfo[i];
-            }
+
+        if (rows.length != 2) {
+            throw new IllegalArgumentException("Array size exceeds or inferior to 4");
         }
         return users;
     }
@@ -42,7 +38,7 @@ public class ImportDB {
         Class.forName(cfg.getProperty("jdbc.driver.ImportDB"));
         try (Connection cnt = DriverManager.getConnection(
                 cfg.getProperty("jdbc:postgresql://localhost:5432/idea_db"),
-                cfg.getProperty("login"),
+                cfg.getProperty("postgres"),
                 cfg.getProperty("password")
         )) {
             for (User user : users) {
