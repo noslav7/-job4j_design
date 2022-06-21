@@ -23,19 +23,32 @@ public class ImportDB {
 
     public List<User> load() throws IOException {
         List<User> users = new ArrayList<>();
-        String[] rows = new String[2];
+        StringBuilder sb = new StringBuilder();
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
-            rd.lines().map(e -> e.split(";")).forEach(new User(e[0], e[1]));
+            rd.lines().forEach(sb::append);
         }
 
-        if (rows.length != 2) {
-            throw new IllegalArgumentException("Array size exceeds or inferior to 4");
+        String rows = sb.toString();
+        String[] splitInfo = rows.split(";");
+
+        if (splitInfo.length != 4) {
+            throw new IllegalArgumentException();
+        }
+
+        int cellNumberMinus = 0;
+        for (int i = 0; i < splitInfo.length; i++) {
+            if (i % 2 == 0) {
+                users.add(new User(splitInfo[i], null));
+                cellNumberMinus++;
+            } else {
+                users.get(i - cellNumberMinus).email = splitInfo[i];
+            }
         }
         return users;
     }
 
     public void save(List<User> users) throws ClassNotFoundException, SQLException {
-        Class.forName(cfg.getProperty("jdbc.driver.ImportDB"));
+        Class.forName(cfg.getProperty("jdbc.driver.Driver"));
         try (Connection cnt = DriverManager.getConnection(
                 cfg.getProperty("jdbc:postgresql://localhost:5432/idea_db"),
                 cfg.getProperty("postgres"),
