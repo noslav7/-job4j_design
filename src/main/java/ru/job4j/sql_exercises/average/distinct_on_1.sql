@@ -1,0 +1,1 @@
+SELECT DISTINCT ON (name) name, login, password FROM accounts

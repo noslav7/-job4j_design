@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -23,36 +24,25 @@ public class ImportDB {
 
     public List<User> load() throws IOException {
         List<User> users = new ArrayList<>();
-        StringBuilder sb = new StringBuilder();
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
-            rd.lines().forEach(sb::append);
-        }
-
-        String rows = sb.toString();
-        String[] splitInfo = rows.split(";");
-
-        if (splitInfo.length != 4) {
-            throw new IllegalArgumentException();
-        }
-
-        int cellNumberMinus = 0;
-        for (int i = 0; i < splitInfo.length; i++) {
-            if (i % 2 == 0) {
-                users.add(new User(splitInfo[i], null));
-                cellNumberMinus++;
+            rd.lines().forEach(line ->  );
+            String[] array = line.split(";", 2);
+            if (array.length != 2 || !array[0].isEmpty() || !array[1].isEmpty()) {
+                throw new IllegalArgumentException();
             } else {
-                users.get(i - cellNumberMinus).email = splitInfo[i];
+                users.add(new User(array[0], ));
+                users.add(new User(array[1], ));
             }
+            return users;
         }
-        return users;
     }
 
     public void save(List<User> users) throws ClassNotFoundException, SQLException {
-        Class.forName(cfg.getProperty("jdbc.driver.Driver"));
+        Class.forName(cfg.getProperty("jdbc.driver"));
         try (Connection cnt = DriverManager.getConnection(
-                cfg.getProperty("jdbc:postgresql://localhost:5432/idea_db"),
-                cfg.getProperty("postgres"),
-                cfg.getProperty("password")
+                cfg.getProperty("jdbc.url"),
+                cfg.getProperty("jdbc.username"),
+                cfg.getProperty("jdbc.password")
         )) {
             for (User user : users) {
                 try (PreparedStatement ps = cnt.prepareStatement("insert into users(name, email) values (?, ?)")) {
