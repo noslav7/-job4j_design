@@ -1,6 +1,5 @@
 package ru.job4j.spammer;
 
-import javax.sound.sampled.Line;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,7 +9,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -25,15 +23,15 @@ public class ImportDB {
 
     public List<User> load() throws IOException {
         List<User> users = new ArrayList<>();
-        String singleLine = null;
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
-            rd.lines().forEach(line -> singleLine + line);
-            String[] array = singleLine.split(";", 2);
-            if (array.length != 2 || !array[0].isBlank() || !array[1].isBlank()) {
-                throw new IllegalArgumentException();
-            } else {
-                users.add(new User(array[0], array[1]));
-            }
+            rd.lines().forEach(line -> {
+                String[] array = line.split(";", 2);
+                if (array.length != 2 || array[0].isBlank() || array[1].isBlank()) {
+                    throw new IllegalArgumentException();
+                } else {
+                    users.add(new User(array[0], array[1]));
+                }
+            });
             return users;
         }
     }
