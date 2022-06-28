@@ -5,4 +5,5 @@ CREATE TABLE subjects(
     start_date timestamp
 );
 
-SELECT * FROM subjects
+SELECT *
+FROM subjects

@@ -5,4 +5,5 @@ CREATE TABLE accounts(
     password text
 );
 
-SELECT * FROM accounts
+SELECT *
+FROM accounts
