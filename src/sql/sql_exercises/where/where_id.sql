@@ -1,6 +1,6 @@
 CREATE TABLE account (
-    id int not null primary key,
-    name text
+id int not null primary key,
+name text
 );
 
 INSERT INTO account VALUES (1, 'Petr Arsentev');

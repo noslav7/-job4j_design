@@ -1,0 +1,1 @@
+SELECT id, first_name, last_name, active, email FROM customers WHERE last_name <> 8 ORDER BY id;

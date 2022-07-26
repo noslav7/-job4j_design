@@ -1,0 +1,1 @@
+SELECT id, first_name, last_name, active, email FROM customers WHERE length(first_name) > 4 ORDER BY id;
