@@ -1,0 +1,1 @@
+SELECT id, model, range, capacity FROM airplanes WHERE model LIKE '%200';
