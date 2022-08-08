@@ -1,0 +1,1 @@
+SELECT id, model, range, capacity FROM airplanes WHERE model NOT LIKE 'Airbus%' AND model NOT LIKE 'Boeing%';
