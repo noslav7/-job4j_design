@@ -36,7 +36,7 @@ public class ModelTest {
         int result = model.getTop();
         assertThat(result).isNotZero()
                 .isPositive()
-                .isOdd()
+                .isEven()
                 .isGreaterThan(1)
                 .isLessThan(3)
                 .isEqualTo(2);

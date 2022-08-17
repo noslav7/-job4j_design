@@ -1,9 +1,6 @@
 package ru.job4j.assertj;
 
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import ru.job4j.serialization.xml.B;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -21,21 +18,24 @@ public class BoxTest {
     public void whenThreeEdgesThanUnknown() {
         Box box = new Box(3, 10);
         String type = box.whatsThis();
-        assertThat(type).isEqualTo(UNKNOWN);
+        assertThat(type).isNotNull()
+                .isEqualTo(UNKNOWN);
     }
 
     @Test
     public void whenVertexIs5Than5Vertices() {
-        Box box = new Box(5, 10);
+        Box box = new Box(6, 10);
         int vertices = box.getNumberOfVertices();
-        assertThat(vertices).isEqualTo(5);
+        assertThat(vertices).isEven()
+                .isEqualTo(6);
     }
 
     @Test
     public void whenVertexIs0ThanNoVertices() {
         Box box = new Box(0, 10);
         int vertices = box.getNumberOfVertices();
-        assertThat(vertices).isEqualTo(0);
+        assertThat(vertices).isGreaterThan(-1)
+                .isEqualTo(0);
     }
 
     @Test
@@ -54,15 +54,18 @@ public class BoxTest {
 
     @Test
     public void whenVertexIs0ThanSphereArea() {
-        Box box = new Box(-1, 10);
+        Box box = new Box(0, 10);
         double area = box.getArea();
-        assertThat(area).isEqualTo(4 * Math.PI * (box.getEdge() * box.getEdge()));
+        assertThat(area).isPositive()
+                .isLessThan(2000)
+                .isEqualTo(4 * Math.PI * (box.getEdge() * box.getEdge()));
     }
 
     @Test
     public void whenVertexIs6ThanHexagonalArea() {
         Box box = new Box(6, 10);
         double area = box.getArea();
-        assertThat(area).isEqualTo(6 * (box.getEdge() * box.getEdge()));
+        assertThat(area).isGreaterThan(10)
+                .isEqualTo(6 * (box.getEdge() * box.getEdge()));
     }
 }
