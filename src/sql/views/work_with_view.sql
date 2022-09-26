@@ -1,0 +1,5 @@
+select * from show_students_with_2_or_more_books;
+
+alter view show_students_with_2_or_more_books rename to students_with_2_or_more_books;
+
+drop view students_with_2_or_more_books;
