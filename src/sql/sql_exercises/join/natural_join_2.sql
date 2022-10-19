@@ -1,28 +1,29 @@
-DROP TABLE actions;
+DROP TABLE engines;
 
-DROP TABLE colors;
+DROP TABLE cars;
 
-CREATE TABLE colors (
-color_id int primary key,
-name text
+CREATE TABLE cars (
+car_id int primary key,
+model text
 );
 
-CREATE TABLE actions (
+CREATE TABLE engines (
 number int primary key,
-description text,
-color_id int references colors(color_id)
+volume decimal,
+power int,
+car_id int references cars(car_id)
 );
 
-INSERT INTO colors VALUES(1, 'red');
-INSERT INTO colors VALUES(2, 'white');
-INSERT INTO colors VALUES(3, 'black');
-INSERT INTO colors VALUES(4, 'purple');
+INSERT INTO cars VALUES (1, 'Toyota Camry');
+INSERT INTO cars VALUES (2, 'Kia Rio');
+INSERT INTO cars VALUES (3, 'Audi A6');
+INSERT INTO cars VALUES (4, 'Renault Sandero');
 
-INSERT INTO actions VALUES (1, 'draw red', 1);
-INSERT INTO actions VALUES (2, 'pink panther', null);
-INSERT INTO actions VALUES (3, 'use for painting', null);
-INSERT INTO actions VALUES (4, 'use black hole', 2);
+INSERT INTO engines VALUES (1234, 2.5, 181, 1);
+INSERT INTO engines VALUES (1479, 1.6, 123, null);
+INSERT INTO engines VALUES (5678, 1.2, 75, 4);
+INSERT INTO engines VALUES (5072, 3.0, 231, null);
 
-SELECT *
-FROM colors
-NATURAL JOIN actions;
+SELECT cars.model, engines.volume, engines.power
+FROM cars
+NATURAL LEFT JOIN engines;
