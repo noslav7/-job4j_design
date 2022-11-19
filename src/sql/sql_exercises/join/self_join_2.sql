@@ -15,4 +15,5 @@ INSERT INTO employee VALUES (1, 'Petr', null),
 
 SELECT e.name, m.name
 FROM employee AS m
-RIGHT JOIN employee AS e ON m.employee_id = e.manager_id;
+RIGHT JOIN employee AS e ON m.employee_id = e.manager_id
+ORDER BY e.employee_id;
