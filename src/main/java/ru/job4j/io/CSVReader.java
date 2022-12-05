@@ -10,17 +10,18 @@ import java.util.StringJoiner;
 
 public class CSVReader {
     public static void handle(ArgsName argsName) throws Exception {
-        File file = File.createTempFile("source.csv", ",");
-        try (BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file))) {
-            out.write(argsName.get(-filter=name));
-            out.write(argsName.get(-filter=age));
-        }
-        try (var scanner = new Scanner(file)) {
+        Path path = Path.of("file.csv");
+        try (Scanner scanner = new Scanner(path).useDelimiter("; ")) {
             while (scanner.hasNext()) {
-                System.out.print(scanner.next());
-                System.out.print(",");
+                String arg = scanner.next();
+                if (arg.equals(argsName.get("name"))) {
+                    System.out.print(arg);
+                    System.out.print(",");
+                } else if (arg.equals(argsName.get("age"))) {
+                    System.out.print(arg);
+                    System.out.println(",");
+                }
             }
         }
-
     }
 }
