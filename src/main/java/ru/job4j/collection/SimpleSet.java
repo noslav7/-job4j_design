@@ -1,5 +1,6 @@
 package ru.job4j.collection;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class SimpleSet {
@@ -29,7 +30,6 @@ public class SimpleSet {
     }
 
     private void grow() {
-        int length = container.length * 2;
-        container = new String[length];
+        container = Arrays.copyOf(container, container.length * 2);
     }
 }
