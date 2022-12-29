@@ -7,8 +7,7 @@ price integer
 );
 
 create or replace function plus_tax_on_unit()
-returns trigger as
-$$
+returns trigger as $$
 BEGIN
 update products
 set price = price + price * 0.2;
@@ -45,3 +44,24 @@ price integer,
 date timestamp
 );
 
+create or replace function insert_into_history_of_price()
+    returns trigger as $$
+DECLARE
+    arg_name varchar;
+    arg_price integer;
+    arg_time timestamp;
+BEGIN
+    arg_name := TG_ARGV[0];
+    arg_price := TG_ARGV[1];
+    arg_time := current_timestamp;
+    insert into history_of_price(name, price, date)
+    values (arg_name, arg_price, arg_time);
+    return NEW;
+END;
+$$
+    LANGUAGE 'plpgsql';
+
+create trigger writing_price_history
+    after insert on products
+    for each row
+execute procedure insert_into_history_of_price();
