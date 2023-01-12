@@ -55,7 +55,7 @@ BEGIN
     arg_price := TG_ARGV[1];
     arg_time := current_timestamp;
     insert into history_of_price(name, price, date)
-    values (arg_name, arg_price, arg_time);
+    values (new.name, new.price, new.date());
     return NEW;
 END;
 $$
