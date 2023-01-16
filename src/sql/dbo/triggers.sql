@@ -18,7 +18,6 @@ LANGUAGE 'plpgsql';
 
 create trigger tax_on_unit_trigger
     after insert on products
-    for each statement
 execute procedure plus_tax_on_unit();
 
 create or replace function tax_on_unit_before_insert()
