@@ -36,8 +36,14 @@ EXCEPT
 SELECT name
 FROM movie;
 
-SELECT name
+(SELECT name
 FROM movie
-UNION
+EXCEPT
 SELECT title
-FROM book;
+FROM book)
+UNION
+(SELECT title
+ FROM book
+ EXCEPT
+ SELECT name
+ FROM movie);
