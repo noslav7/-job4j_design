@@ -9,16 +9,8 @@ price integer
 create or replace function plus_tax_on_unit()
     returns trigger as $$
 BEGIN
-update products
-set price = price + price * 0.2;
-return new;
-END;
-$$
-create or replace function plus_tax_on_unit()
-    returns trigger as $$
-BEGIN
     update products
-    set price = price + price * 0.2;
+    set price = price + price * 0.2 where id = (select id from inserted);
     return new;
 END;
 $$
@@ -34,8 +26,7 @@ create or replace function tax_on_unit_before_insert()
     returns trigger as
 $$
 BEGIN
-    update products
-    set price = price + price * 0.2;
+    new.price = new.price + new.price * 0.2;
     return NEW;
 END;
 $$
@@ -55,16 +46,9 @@ date timestamp
 
 create or replace function insert_into_history_of_price()
     returns trigger as $$
-DECLARE
-    arg_name varchar;
-    arg_price integer;
-    arg_time timestamp;
 BEGIN
-    new.arg_name := TG_ARGV[0];
-    new.arg_price := TG_ARGV[1];
-    new.arg_time := current_timestamp;
     insert into history_of_price(name, price, date)
-    values (new.arg_name, new.arg_price, new.arg_time);
+    values (new.name, new.price, current_timestamp);
     return NEW;
 END;
 $$
