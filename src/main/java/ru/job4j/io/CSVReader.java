@@ -1,28 +1,25 @@
 package ru.job4j.io;
 
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileOutputStream;
+import java.nio.file.Files;
 import java.util.Scanner;
 
 public class CSVReader {
     public static void handle(ArgsName argsName) throws Exception {
         File file = File.createTempFile("file", ".csv");
-        Scanner scanner = new Scanner(file).useDelimiter(",");
+        Files.writeString(file.toPath(), argsName.get("-filter"));
+
+        Scanner scanner = new Scanner(file).useDelimiter(";");
 
         while (scanner.hasNext()) {
-            System.out.print(scanner.next(argsName.get("name")));
-            System.out.print(" ");
-            System.out.println(scanner.next(argsName.get("age")));
+            System.out.println(scanner.next(argsName.get("-filter")));
             scanner.nextLine();
         }
-
     }
 
     public static void main(String[] args) throws Exception {
-        if (args.length != 5) {
-            throw new IllegalArgumentException("Number of arguments should be 5");
+        if (args.length != 4) {
+            throw new IllegalArgumentException("There should be 4 arguments");
         }
         ArgsName argsName = ArgsName.of(args);
         handle(argsName);
