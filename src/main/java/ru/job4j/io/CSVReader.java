@@ -13,13 +13,14 @@ public class CSVReader {
             data.add(scanner1.next());
         }
 
-        List<String> filter = new ArrayList<>();
-        Scanner scanner2 = new Scanner(argsName.get("filter")).useDelimiter(";");
-        while (scanner2.hasNext()) {
-            filter.add(scanner2.next());
+        Scanner scanner2 = new Scanner(argsName.get("filter"));
+        String[] filter = scanner2.nextLine().split(";");
+
+        List<String> headers = new ArrayList<>();
+        Scanner scanner3 = new Scanner(data.get(0)).useDelimiter(";");
+        while (scanner3.hasNext()) {
+            headers.add(scanner3.next());
         }
-
-
     }
 
     public static void main(String[] args) throws Exception {
