@@ -1,20 +1,25 @@
 package ru.job4j.io;
 
-import java.io.File;
-import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class CSVReader {
     public static void handle(ArgsName argsName) throws Exception {
-        File file = File.createTempFile("file", ".csv");
-        Files.writeString(file.toPath(), argsName.get("-filter"));
 
-        Scanner scanner = new Scanner(file).useDelimiter(";");
-
-        while (scanner.hasNext()) {
-            System.out.println(scanner.next(argsName.get("-filter")));
-            scanner.nextLine();
+        List<String> data = new ArrayList<>();
+        Scanner scanner1 = new Scanner(argsName.get("path"));
+        while (scanner1.hasNext()) {
+            data.add(scanner1.next());
         }
+
+        List<String> filter = new ArrayList<>();
+        Scanner scanner2 = new Scanner(argsName.get("filter")).useDelimiter(";");
+        while (scanner2.hasNext()) {
+            filter.add(scanner2.next());
+        }
+
+
     }
 
     public static void main(String[] args) throws Exception {
