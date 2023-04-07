@@ -15,22 +15,28 @@ public class CSVReader {
         }
 
         Scanner scanner2 = new Scanner(argsName.get("filter"));
-        String[] filter = scanner2.nextLine().split(";");
+        String[] filter = scanner2.nextLine().split(",");
 
         List<String> headersList = new ArrayList<>();
-        Scanner scanner3 = new Scanner(data.get(0)).useDelimiter(";");
+        Scanner scanner3 = new Scanner(data.get(0)).useDelimiter(argsName.get("delimiter"));
         while (scanner3.hasNext()) {
             headersList.add(scanner3.next());
         }
 
-        List<String> matchList = new ArrayList<>();
+        List<Integer> matchList = new ArrayList<>();
         for (int i = 0; i < headersList.size(); i++) {
+            matchList.add(-1);
             for (int j = 0; j < filter.length; j++) {
                 if (headersList.get(i).equals(filter[j])) {
-                    matchList.add(filter[j]);
+                    matchList.set(i, j);
                 }
             }
         }
+
+//        data.set(2, String.valueOf(2));
+//        data.set(0, String.valueOf(1));
+//        data.set(0, String.valueOf(-1));
+//        data.set(0, String.valueOf(0));
     }
 
     public static void main(String[] args) throws Exception {
