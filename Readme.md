@@ -1,2 +1,3 @@
-[![Build Status](https://travis-ci.com/noslav7/-job4j_design.svg?branch=master)](https://travis-ci.com/noslav7/-job4j_design)
-[![codecov](https://codecov.io/gh/noslav7/job4j_design/branch/master/graph/badge.svg?token=LK17AUN4KM)](https://codecov.io/gh/noslav7/job4j_design)
+The repository contains solutions of tasks of several study modules "Junior" part of "Job4j" course. The categories of topics of tasks include 
+Input/Output, GC, Collections (in particular, Sets, Queues, Stacks), AssertJ library, Generics, Iterators, Maps, Serialization, 
+Regular Expressions and other aspects.
