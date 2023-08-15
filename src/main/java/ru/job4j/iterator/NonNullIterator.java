@@ -14,7 +14,7 @@ public class NonNullIterator implements Iterator<Integer> {
     @Override
     public boolean hasNext() {
         boolean nextFalse = false;
-        for (int i = index + 1; i <= data.length; i++) {
+        for (int i = index; i < data.length; i++) {
             if (data[i] != null) {
                 return true;
             }
@@ -24,11 +24,9 @@ public class NonNullIterator implements Iterator<Integer> {
 
     @Override
     public Integer next() {
-        boolean hasElement = false;
-        for (int i = index + 1; i < data.length; i++) {
-            if (data[index] != null) {
+        for (int i = index; i < data.length; i++) {
+            if (data[i] != null) {
                 index++;
-                hasElement = true;
                 return data[i];
             } else {
                 index++;
