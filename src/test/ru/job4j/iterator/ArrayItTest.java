@@ -2,9 +2,6 @@ package ru.job4j.iterator;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
-import ru.job4j.it.ArrayIt;
-
-import java.util.NoSuchElementException;
 
 public class ArrayItTest {
 

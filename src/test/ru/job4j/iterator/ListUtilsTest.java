@@ -1,14 +1,12 @@
 package ru.job4j.iterator;
 
 import org.junit.Test;
-import ru.job4j.it.ListUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
-import static java.lang.Math.E;
 import static java.lang.Math.multiplyExact;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;

@@ -2,7 +2,6 @@ package ru.job4j.iterator;
 
 import org.junit.Before;
 import org.junit.Test;
-import ru.job4j.it.EvenNumbersIterator;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
