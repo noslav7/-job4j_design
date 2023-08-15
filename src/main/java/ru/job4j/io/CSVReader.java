@@ -33,10 +33,10 @@ public class CSVReader {
             }
         }
 
-//        data.set(2, String.valueOf(2));
-//        data.set(0, String.valueOf(1));
-//        data.set(0, String.valueOf(-1));
-//        data.set(0, String.valueOf(0));
+/*        data.set(2, String.valueOf(2));
+          data.set(0, String.valueOf(1));
+          data.set(0, String.valueOf(-1));
+          data.set(0, String.valueOf(0)); */
     }
 
     public static void main(String[] args) throws Exception {

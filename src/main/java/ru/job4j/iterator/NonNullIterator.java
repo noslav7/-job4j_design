@@ -24,14 +24,20 @@ public class NonNullIterator implements Iterator<Integer> {
 
     @Override
     public Integer next() {
+        Integer element = Integer.MAX_VALUE;
         for (int i = index; i < data.length; i++) {
             if (data[i] != null) {
                 index++;
-                return data[i];
+                element = data[i];
+                break;
             } else {
                 index++;
             }
         }
-        throw new NoSuchElementException();
+        if (element != Integer.MAX_VALUE) {
+            return element;
+        } else {
+            throw new NoSuchElementException();
+        }
     }
 }
