@@ -24,10 +24,16 @@ public class NonNullIterator implements Iterator<Integer> {
 
     @Override
     public Integer next() {
-        if (data[++index] != null) {
-            return data[index];
-        } else {
-            throw new NoSuchElementException();
+        boolean hasElement = false;
+        for (int i = index + 1; i < data.length; i++) {
+            if (data[index] != null) {
+                index++;
+                hasElement = true;
+                return data[i];
+            } else {
+                index++;
+            }
         }
+        throw new NoSuchElementException();
     }
 }
