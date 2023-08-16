@@ -6,8 +6,8 @@ import java.util.NoSuchElementException;
 
 public class CyclicIterator<T> implements Iterator<T>{
 
-    private List<T> data;
-    int index = 0;
+    private final List<T> data;
+    int index;
 
     public CyclicIterator(List<T> data) {
         this.data = data;
@@ -19,7 +19,6 @@ public class CyclicIterator<T> implements Iterator<T>{
         if (index + 1 < data.size() && !data.isEmpty()) {
             hasNext = true;
         } else if (index + 1 == data.size() && !data.isEmpty()) {
-            index = 0;
             hasNext = true;
         }
         return hasNext;
@@ -30,7 +29,7 @@ public class CyclicIterator<T> implements Iterator<T>{
         T element = null;
         if (index + 1 < data.size()) {
             element = data.get(index);
-            index++;
+            index = index + 1;
         } else if (index + 1 == data.size()) {
             element = data.get(data.size() - 1);
             index = 0;
